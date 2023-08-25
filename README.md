@@ -1,2 +1,2 @@
 # go-utils
-Golang utilities
+Golang Utilities
