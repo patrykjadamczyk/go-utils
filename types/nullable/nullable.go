@@ -108,6 +108,13 @@ func (n Nullable[T]) Unwrap() T {
 	return n.Data
 }
 
+func (n *Nullable[T]) UnwrapOr(defaultVal T) T {
+	if !n.Valid {
+		return defaultVal
+	}
+	return n.Data
+}
+
 func (n Nullable[T]) AndThen(fn func(T) any) any {
 	if !n.Valid {
 		return nil
