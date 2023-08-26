@@ -83,11 +83,7 @@ func (db *DB[TKey, TValue]) managed(writable bool, fn func(tx *Tx[TKey, TValue])
 	var tx *Tx[TKey, TValue]
 	tx = db.Begin(writable)
 	defer func() {
-		if writable {
-			tx.unlock()
-		} else {
-			tx.unlock()
-		}
+		tx.unlock()
 	}()
 
 	_ = fn(tx)
