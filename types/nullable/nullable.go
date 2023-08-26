@@ -4,6 +4,8 @@ import (
 	"database/sql/driver"
 	"fmt"
 	"time"
+
+	"github.com/patrykjadamczyk/go-utils/errors"
 )
 
 // Nullable represents data that also can be NULL
@@ -17,7 +19,12 @@ func Value[T any](value T) Nullable[T] {
 	if any(value) == nil {
 		return Nullable[T]{Valid: false}
 	}
-	return Nullable[T]{Data: value, Valid: true}
+	switch any(value).(type) {
+		case errors.NilError:
+			return Nullable[T]{Valid: false}
+		default:
+			return Nullable[T]{Data: value, Valid: true}
+	}
 }
 
 // ValueFromPointer Create a Nullable from a pointer
@@ -86,4 +93,24 @@ func (n Nullable[T]) Value() (driver.Value, error) {
 		return nil, nil
 	}
 	return n.Data, nil
+}
+
+func (n Nullable[T]) Expect(err any) {
+	if !n.Valid {
+		panic(err)
+	}
+}
+
+func (n Nullable[T]) Unwrap() T {
+	if !n.Valid {
+		panic(errors.UnwrapError{})
+	}
+	return n.Data
+}
+
+func (n Nullable[T]) AndThen(fn func(T) any) any {
+	if !n.Valid {
+		return nil
+	}
+	return fn(n.Data)
 }

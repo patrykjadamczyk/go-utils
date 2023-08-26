@@ -1,22 +1,15 @@
 package utils
 
-type NilError struct {
-}
-
-func (NilError) Error() string {
-    return "NilError"
-}
-
-var NilErrorErr NilError = NilError{}
+import "github.com/patrykjadamczyk/go-utils/errors"
 
 func IsError(err error) bool {
-    if err == nil {
-        return false
-    }
-    switch err.(type) {
-    case NilError:
-        return false
-    default:
-        return true
-    }
+	if err == nil {
+		return false
+	}
+	switch err.(type) {
+	case errors.NilError:
+		return false
+	default:
+		return true
+	}
 }

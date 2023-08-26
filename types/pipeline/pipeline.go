@@ -3,6 +3,7 @@ package pipeline
 import (
 	"reflect"
 
+	"github.com/patrykjadamczyk/go-utils/errors"
 	"github.com/patrykjadamczyk/go-utils/utils"
 )
 
@@ -73,7 +74,7 @@ func (p *Pipeline) IsError() bool {
 	}
 	if len(p.Data) == 1 {
 		switch p.Data[0].(type) {
-		case utils.NilError:
+		case errors.NilError:
 			return false
 		case error:
 			return true
@@ -82,7 +83,7 @@ func (p *Pipeline) IsError() bool {
 		}
 	}
 	switch p.Data[len(p.Data)-1].(type) {
-	case utils.NilError:
+	case errors.NilError:
 		return false
 	case error:
 		return true
@@ -97,7 +98,7 @@ func (p *Pipeline) GetError() error {
 	}
 	if len(p.Data) == 1 {
 		switch p.Data[0].(type) {
-		case utils.NilError:
+		case errors.NilError:
 			return nil
 		case error:
 			return utils.EnsureType[error](p.Data[0])
@@ -106,7 +107,7 @@ func (p *Pipeline) GetError() error {
 		}
 	}
 	switch p.Data[len(p.Data)-1].(type) {
-	case utils.NilError:
+	case errors.NilError:
 		return nil
 	case error:
 		return utils.EnsureType[error](p.Data[len(p.Data)-1])
@@ -118,7 +119,7 @@ func (p *Pipeline) GetError() error {
 func (p *Pipeline) GetErrorSpecial() error {
 	err := p.GetError()
 	if err == nil {
-		return utils.NilErrorErr
+		return errors.NilErrorErr
 	}
 	return err
 }
