@@ -10,6 +10,18 @@ type Result[T any] struct {
 	ErrorValue error
 }
 
+func MakeResult[T any]() Result[T] {
+	return Result[T]{}
+}
+
+func (r Result[T]) ToPointer() *Result[T] {
+	return &r
+}
+
+func (r *Result[T]) ToResult() Result[T] {
+	return *r
+}
+
 func (r *Result[T]) Error(err error) Result[T] {
 	r.ErrorValue = err
 	return *r
