@@ -1,7 +1,7 @@
 package pipeline
 
 import (
-	"github.com/patrykjadamczyk/go-utils/utils"
+	"github.com/patrykjadamczyk/go-utils/errors"
 )
 
 type PipelineArray struct {
@@ -30,7 +30,7 @@ func (p PipelineArray) All(args ...[]any) Pipeline {
 			}
 			result[i] = p.Value()
 		}
-		return result, utils.NilErrorErr
+		return result, errors.NilErrorErr
 	})
 }
 
@@ -44,15 +44,15 @@ func (PipelineArrayAnyError) Error() string {
 func (p PipelineArray) Any(args ...[]any) Pipeline {
 	return Value(func() ([]any, []error, error) {
 		result := make([]any, len(p.Pipelines))
-		errors := make([]error, len(p.Pipelines))
+		errs := make([]error, len(p.Pipelines))
 		for i, p := range p.Pipelines {
 			p.Evaluate(args[i]...)
 			if p.IsError() == false {
-				return p.Value(), []error{}, utils.NilErrorErr
+				return p.Value(), []error{}, errors.NilErrorErr
 			}
 			result[i] = p.Value()
-			errors[i] = p.GetError()
+			errs[i] = p.GetError()
 		}
-		return result, errors, PipelineArrayAnyError{}
+		return result, errs, PipelineArrayAnyError{}
 	})
 }
