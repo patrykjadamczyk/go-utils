@@ -56,6 +56,10 @@ func (r Result[T]) UnwrapOr(defaultVal T) T {
 	return r.DataValue
 }
 
+func (r Result[T]) UnwrapWithErr() (T, error) {
+	return r.DataValue, r.ErrorValue
+}
+
 func (r Result[T]) AndThen(fn func(T) any) any {
 	if r.IsError() {
 		return nil
