@@ -15,3 +15,10 @@ type UnwrapError struct {
 func (UnwrapError) Error() string {
 	return "UnwrapError: Tried unwrap null value"
 }
+
+type NullableError struct {
+}
+
+func (NullableError) Error() string {
+	return "NullableError: Nullable contains null"
+}
