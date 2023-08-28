@@ -27,6 +27,11 @@ func MakeErrorResult[T any](err error) Result[T] {
 	return r.Error(err)
 }
 
+// Make Error Result with additional data
+func MakeErrorResultWithValue[T any](value T, err error) Result[T] {
+	return Result[T]{DataValue: value, ErrorValue: err}
+}
+
 // Get Pointer of Result
 func (r Result[T]) ToPointer() *Result[T] {
 	return &r
