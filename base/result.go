@@ -101,6 +101,16 @@ func (r Result[T]) UnwrapOrErr(f func(Result[T])) T {
 	return r.DataValue
 }
 
+// Unwraps as result type for if error checks and run specified function f
+// instead of panic
+// Return result of underlying value (having err if it's found)
+func (r Result[T]) UnwrapAsResultOrErr(f func(Result[T])) Result[T] {
+	if r.IsError() {
+		f(r)
+	}
+	return r
+}
+
 // Unwrap value and error separately (Result -> Go normal returns)
 func (r Result[T]) UnwrapWithErr() (T, error) {
 	return r.DataValue, r.ErrorValue

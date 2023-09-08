@@ -7,8 +7,12 @@ type UnwrappableInterface[V any] interface {
 	// Get underlying value or return default value if error is found
 	UnwrapOr(defaultVal V) V
 	// Unwrap but if error occurs run specified function f instead of panic
+	// Return underlying value
+	UnwrapOrErr(f func(UnwrappableInterface[V])) V
+	// Unwraps as result type for if error checks and run specified function f
+	// instead of panic
 	// Return result of underlying value (having err if it's found)
-	UnwrapOrErr(f func(UnwrappableInterface[V])) Result[V]
+	UnwrapAsResultOrErr(f func(UnwrappableInterface[V])) Result[V]
 	// Unwrap value and error separately (Result -> Go normal returns)
 	UnwrapWithErr() (V, error)
 	// Expect correct value if error is found panic with specified message

@@ -132,6 +132,19 @@ func (n Nullable[T]) UnwrapOrErr(f func(Nullable[T])) T {
 	}
 	return n.ValueOrZero()
 }
+
+
+// Unwraps as result type for if error checks and run specified function f
+// instead of panic
+// Return result of underlying value (having err if it's found)
+func (n Nullable[T]) UnwrapAsResultOrErr(f func(Nullable[T])) Result[T] {
+	if !n.Valid {
+		f(n)
+		return MakeErrorResult[T](errors.UnwrapError{})
+	}
+	return MakeOkResult[T](n.ValueOrZero())
+}
+
 // Unwrap value and error separately (Result -> Go normal returns)
 func (n Nullable[T]) UnwrapWithErr() (T, error) {
 	var err error = nil
