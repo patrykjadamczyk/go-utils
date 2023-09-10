@@ -83,7 +83,7 @@ func (n Nullable[T]) String() string {
 func (n Nullable[T]) GoString() string {
 	var ref T
 	return fmt.Sprintf(
-		"nullable.Nullable[%T]{Data:%#v,Valid:%#v}",
+		"base.Nullable[%T]{Data:%#v,Valid:%#v}",
 		ref,
 		n.Data,
 		n.Valid,
@@ -117,7 +117,7 @@ func (n Nullable[T]) Unwrap() T {
 }
 
 // Get underlying value or return default value if error is found
-func (n *Nullable[T]) UnwrapOr(defaultVal T) T {
+func (n Nullable[T]) UnwrapOr(defaultVal T) T {
 	if !n.Valid {
 		return defaultVal
 	}

@@ -117,7 +117,7 @@ func (p *Pipeline) GetError() error {
 		case errors.NilError:
 			return nil
 		case error:
-			return utils.EnsureType[error](p.Data[0])
+			return EnsureType[error](p.Data[0])
 		default:
 			return nil
 		}
@@ -128,7 +128,7 @@ func (p *Pipeline) GetError() error {
 	case errors.NilError:
 		return nil
 	case error:
-		return utils.EnsureType[error](p.Data[len(p.Data)-1])
+		return EnsureType[error](p.Data[len(p.Data)-1])
 	default:
 		return nil
 	}

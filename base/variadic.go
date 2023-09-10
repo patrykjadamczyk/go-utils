@@ -21,7 +21,7 @@ func ExplodeTyped[T any](array []T, values ...*T) {
 
 // Convert specified array of type T to array of type any
 func ConvertToAnyArray[T any](array []T) []any {
-    result := make([]any, len(array))
+    result := make([]any, 0)
     for _, v := range array {
         result = append(result, v)
     }

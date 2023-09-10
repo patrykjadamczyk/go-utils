@@ -6,6 +6,16 @@ type UnwrappableInterface[V any] interface {
 	Unwrap() V
 	// Get underlying value or return default value if error is found
 	UnwrapOr(defaultVal V) V
+	// Unwrap value and error separately (Result -> Go normal returns)
+	UnwrapWithErr() (V, error)
+	// Expect correct value if error is found panic with specified message
+	Expect(err any)
+}
+
+// Unwrappable Interface Extension
+// This functions should be implemented by any object that want to implement Unwrappable Interface
+// This functions are based on UnwrappableInterface itself being a problem for type checks for some reason
+type ExtendedUnwrappableInterface[V any] interface {
 	// Unwrap but if error occurs run specified function f instead of panic
 	// Return underlying value
 	UnwrapOrErr(f func(UnwrappableInterface[V])) V
@@ -13,10 +23,6 @@ type UnwrappableInterface[V any] interface {
 	// instead of panic
 	// Return result of underlying value (having err if it's found)
 	UnwrapAsResultOrErr(f func(UnwrappableInterface[V])) Result[V]
-	// Unwrap value and error separately (Result -> Go normal returns)
-	UnwrapWithErr() (V, error)
-	// Expect correct value if error is found panic with specified message
-	Expect(err any)
 }
 
 // Errorable Generic Result Interface Object
