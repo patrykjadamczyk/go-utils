@@ -29,3 +29,11 @@ func PanicIfErrorFromOutput(returns ...any) {
 		}
 	}
 }
+
+func NewError(msg string) error {
+	return errors.NewError(msg)
+}
+
+func ExpandError(err error) error {
+	return errors.AddStackTrace(err)
+}
