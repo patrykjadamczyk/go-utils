@@ -172,3 +172,23 @@ func TestNullableAsUnwrappableInterfaceExpectCase2(t *testing.T) {
 	var n Nullable[int] = Null[int]()
 	n.Expect(errors.New("test2"))
 }
+
+func TestNullableAsUnwrappableInterfaceExpectErrCase1(t *testing.T) {
+	defer func(){
+		if r := recover(); r != nil {
+			t.Error("Nullable should not panic on correct value")
+		}
+	}()
+	var n Nullable[int] = Null[int]()
+	n.ExpectErr(errors.New("test1"))
+}
+
+func TestNullableAsUnwrappableInterfaceExpectErrCase2(t *testing.T) {
+	defer func(){
+		if r := recover(); r == nil {
+			t.Error("Nullable should panic on incorrect value")
+		}
+	}()
+	var n Nullable[int] = NullableValue(1)
+	n.ExpectErr(errors.New("test2"))
+}

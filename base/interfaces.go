@@ -10,6 +10,8 @@ type UnwrappableInterface[V any] interface {
 	UnwrapWithErr() (V, error)
 	// Expect correct value if error is found panic with specified message
 	Expect(err any)
+	// Expect error value if error is not found panic with specified message
+	ExpectErr(err any)
 }
 
 // Unwrappable Interface Extension

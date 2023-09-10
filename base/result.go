@@ -121,3 +121,10 @@ func (r Result[T]) Expect(err any) {
 		panic(err)
 	}
 }
+
+// Expect error value if error is not found panic with specified message
+func (r Result[T]) ExpectErr(err any) {
+	if !r.IsError() {
+		panic(err)
+	}
+}

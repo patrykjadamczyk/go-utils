@@ -160,3 +160,10 @@ func (n Nullable[T]) Expect(err any) {
 		panic(err)
 	}
 }
+
+// Expect error value if error is not found panic with specified message
+func (n Nullable[T]) ExpectErr(err any) {
+	if n.Valid {
+		panic(err)
+	}
+}
