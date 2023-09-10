@@ -2,7 +2,6 @@ package base
 
 import (
 	"github.com/patrykjadamczyk/go-utils/errors"
-	"github.com/patrykjadamczyk/go-utils/utils"
 )
 
 type Result[T any] struct {
@@ -66,7 +65,7 @@ func (r Result[T]) AndThen(fn func(T) any) any {
 
 // Check if Result has error
 func (r Result[T]) IsError() bool {
-	return utils.IsError(r.ErrorValue)
+	return IsError(r.ErrorValue)
 }
 
 // If result has error get error otherwise return nil
