@@ -2,7 +2,7 @@ package base
 
 type SwitchResult[SV any, V any] struct {
 	SwitchValue SV
-	Value V
+	Value       V
 	SwitchFound bool
 }
 
@@ -32,4 +32,11 @@ func (s *SwitchResult[SV, V]) Default(f func(SV) V) *SwitchResult[SV, V] {
 	s.Value = f(s.SwitchValue)
 	s.SwitchFound = true
 	return s
+}
+
+func Ternary[V any](condition bool, ifTrue V, ifFalse V) V {
+	if condition {
+		return ifTrue
+	}
+	return ifFalse
 }
