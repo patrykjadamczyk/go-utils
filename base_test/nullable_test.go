@@ -22,6 +22,13 @@ func TestNullableShouldBeExtendedUnwrappable(t *testing.T) {
 	// }
 }
 
+func TestNullableShouldBeErrorable(t *testing.T) {
+	var n ErrorableGenericResultInterface = NullableValue(1)
+	if n.IsError() {
+		t.Error("Nullable should implement ErrorableGenericResultInterface")
+	}
+}
+
 func TestNullableValue(t *testing.T) {
 	var n Nullable[int] = NullableValue(1)
 	if n.ValueOrZero() != 1 {

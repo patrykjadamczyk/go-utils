@@ -51,7 +51,7 @@ func TestResult(t *testing.T) {
 func TestResultAsUnwrappableInterface(t *testing.T) {
 	var n UnwrappableInterface[int] = MakeOkResult[int](1)
 	if n.UnwrapOr(2) != 1 {
-		t.Error("Result should be 1")
+		t.Error("Result should implement UnwrappableInterface")
 	}
 }
 
@@ -61,6 +61,13 @@ func TestResultAsExtendedUnwrappableInterface(t *testing.T) {
 	// if r.UnwrapOr(2) != 1 {
 	// 	t.Error("Result should implement ExtendedUnwrappableInterface")
 	// }
+}
+
+func TestResultShouldBeErrorable(t *testing.T) {
+	var n ErrorableGenericResultInterface = MakeOkResult[int](1)
+	if n.IsError() {
+		t.Error("Result should implement ErrorableGenericResultInterface")
+	}
 }
 
 func TestResultAndThen(t *testing.T) {
