@@ -83,7 +83,7 @@ func (n Nullable[T]) String() string {
 func (n Nullable[T]) GoString() string {
 	var ref T
 	return fmt.Sprintf(
-		"nullable.Nullable[%T]{Data:%#v,Valid:%#v}",
+		"base.Nullable[%T]{Data:%#v,Valid:%#v}",
 		ref,
 		n.Data,
 		n.Valid,
