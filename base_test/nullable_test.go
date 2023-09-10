@@ -91,6 +91,27 @@ func TestNullableAsUnwrappableInterfaceUnwrapCase2(t *testing.T) {
 	t.Error("Nullable should panic on nil value unwrapping")
 }
 
+func TestNullableAsUnwrappableInterfaceUnwrapErrCase1(t *testing.T) {
+	defer func(){
+		if r := recover(); r != nil {
+			t.Error("Nullable should not panic on incorrect value")
+		}
+	}()
+	var n Nullable[int] = Null[int]()
+	n.UnwrapErr()
+}
+
+func TestNullableAsUnwrappableInterfaceUnwrapErrCase2(t *testing.T) {
+	defer func(){
+		if r := recover(); r == nil {
+			t.Error("Nullable should panic on correct value")
+		}
+	}()
+	var n Nullable[int] = NullableValue(1)
+	n.UnwrapErr()
+	t.Error("Nullable should panic on correct value unwrapping")
+}
+
 func TestNullableAsUnwrappableInterfaceUnwrapOr(t *testing.T) {
 	var n Nullable[int] = NullableValue(1)
 	if n.UnwrapOr(2) != 1 {

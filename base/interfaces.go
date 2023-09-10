@@ -4,6 +4,8 @@ package base
 type UnwrappableInterface[V any] interface {
 	// Get underlying value or panic if error
 	Unwrap() V
+	// Get underlying error or panic if correct value
+	UnwrapErr() error
 	// Get underlying value or return default value if error is found
 	UnwrapOr(defaultVal V) V
 	// Unwrap value and error separately (Result -> Go normal returns)

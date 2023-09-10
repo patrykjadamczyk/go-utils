@@ -97,6 +97,27 @@ func TestResultAsUnwrappableInterfaceUnwrapCase2(t *testing.T) {
 	t.Error("Result should panic on error")
 }
 
+func TestResultAsUnwrappableInterfaceUnwrapErrCase1(t *testing.T) {
+	defer func() {
+		if err := recover(); err != nil {
+			t.Error("Result should not panic on err value")
+		}
+	}()
+	var r Result[int] = MakeErrorResult[int](errors.New("test2"))
+	r.UnwrapErr()
+}
+
+func TestResultAsUnwrappableInterfaceUnwrapErrCase2(t *testing.T) {
+	defer func() {
+		if err := recover(); err == nil {
+			t.Error("Result should panic on ok value")
+		}
+	}()
+	var r Result[int] = MakeOkResult[int](1)
+	r.UnwrapErr()
+	t.Error("Result should panic on ok value")
+}
+
 func TestResultAsUnwrappableInterfaceUnwrapOr(t *testing.T) {
 	var r Result[int] = MakeOkResult(1)
 	if r.UnwrapOr(2) != 1 {

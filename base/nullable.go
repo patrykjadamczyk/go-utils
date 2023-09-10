@@ -116,6 +116,14 @@ func (n Nullable[T]) Unwrap() T {
 	return n.Data
 }
 
+// Get underlying error or panic if correct value
+func (n Nullable[T]) UnwrapErr() error {
+	if n.Valid {
+		panic(errors.UnwrapError{})
+	}
+	return errors.NewError("Null")
+}
+
 // Get underlying value or return default value if error is found
 func (n Nullable[T]) UnwrapOr(defaultVal T) T {
 	if !n.Valid {
