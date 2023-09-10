@@ -38,3 +38,9 @@ type ErrorableGenericResultInterface interface {
 	// Get Error if Object has error or nil if not
 	GetError() error
 }
+
+// Defaultable Interface
+type DefaultableInterface[T any] interface {
+	// Get Default Value
+	GetDefault() T
+}
