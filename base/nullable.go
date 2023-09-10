@@ -117,7 +117,7 @@ func (n Nullable[T]) Unwrap() T {
 }
 
 // Get underlying value or return default value if error is found
-func (n *Nullable[T]) UnwrapOr(defaultVal T) T {
+func (n Nullable[T]) UnwrapOr(defaultVal T) T {
 	if !n.Valid {
 		return defaultVal
 	}
