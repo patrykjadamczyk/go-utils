@@ -37,3 +37,15 @@ func NewError(msg string) error {
 func ExpandError(err error) error {
 	return errors.AddStackTrace(err)
 }
+
+func Assert(cond bool) {
+	if !cond {
+		panic(ExpandError(errors.AssertionError{}))
+	}
+}
+
+func AssertCustomError(cond bool, err error) {
+	if !cond {
+		panic(ExpandError(err))
+	}
+}

@@ -22,3 +22,10 @@ type NullableError struct {
 func (NullableError) Error() string {
 	return "NullableError: Nullable contains null"
 }
+
+type AssertionError struct {
+}
+
+func (AssertionError) Error() string {
+	return "AssertionError: Assertion failed"
+}
