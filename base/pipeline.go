@@ -170,6 +170,7 @@ func (p *Pipeline) Catch(f any) *Pipeline {
 	return p
 }
 
+// Do something no matter if Pipeline has error or no
 func (p *Pipeline) Finally(f any) *Pipeline {
 	if utils.IsFunc(f) == false {
 		panic("Value is not a function")
