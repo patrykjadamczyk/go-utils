@@ -6,6 +6,13 @@ import (
 	"time"
 )
 
+/*
+You can make correct union type like this
+type Union interface {
+	T1 | T2
+}
+*/
+
 type Union[T1 any, T2 any] struct {
 	Data any
 }
