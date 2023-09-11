@@ -10,8 +10,15 @@ func TestRange(t *testing.T) {
 	for i := range Range(10) {
 		t1 += i
 	}
-	if t1 != 45 {
+	if t1 != 55 {
 		t.Error("Range should work", t1)
+	}
+	t1a := 0
+	for i := range RangeNonInclusive(10) {
+		t1a += i
+	}
+	if t1a != 45 {
+		t.Error("RangeNonInclusive should work", t1)
 	}
 	t2 := 0
 	for _, i2 := range StartEndRange(5, 10) {
