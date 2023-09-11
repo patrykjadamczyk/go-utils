@@ -1,6 +1,7 @@
 package base
 
 import (
+	err "errors"
 	"github.com/patrykjadamczyk/go-utils/errors"
 )
 
@@ -48,4 +49,16 @@ func AssertCustomError(cond bool, err error) {
 	if !cond {
 		panic(ExpandError(err))
 	}
+}
+
+func NotImplemented() {
+	panic(ExpandError(errors.NotImplementedError{}))
+}
+
+func Unreachable() {
+	panic(ExpandError(errors.UnreachableError{}))
+}
+
+func NotSupported() {
+	panic(ExpandError(err.ErrUnsupported))
 }
