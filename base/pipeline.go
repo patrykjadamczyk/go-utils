@@ -14,6 +14,7 @@ type Pipeline struct {
 	Data     []any
 }
 
+// Make New Pipeline from specified function
 func MakePipeline(value any) Pipeline {
 	if utils.IsFunc(value) == false {
 		panic("Value is not a function")
@@ -21,6 +22,7 @@ func MakePipeline(value any) Pipeline {
 	return Pipeline{Function: value}
 }
 
+// Make New Pipeline from specified pointer to function
 func MakePipelineFromPointer(value *any) Pipeline {
 	if utils.IsFunc(*value) == false {
 		panic("Value is not a function")
