@@ -4,12 +4,16 @@ package base
 type UnwrappableInterface[V any] interface {
 	// Get underlying value or panic if error
 	Unwrap() V
+	// Get underlying error or panic if correct value
+	UnwrapErr() error
 	// Get underlying value or return default value if error is found
 	UnwrapOr(defaultVal V) V
 	// Unwrap value and error separately (Result -> Go normal returns)
 	UnwrapWithErr() (V, error)
 	// Expect correct value if error is found panic with specified message
 	Expect(err any)
+	// Expect error value if error is not found panic with specified message
+	ExpectErr(err any)
 }
 
 // Unwrappable Interface Extension
@@ -33,4 +37,10 @@ type ErrorableGenericResultInterface interface {
 	IsError() bool
 	// Get Error if Object has error or nil if not
 	GetError() error
+}
+
+// Defaultable Interface
+type DefaultableInterface[T any] interface {
+	// Get Default Value
+	GetDefault() T
 }

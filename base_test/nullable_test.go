@@ -22,6 +22,13 @@ func TestNullableShouldBeExtendedUnwrappable(t *testing.T) {
 	// }
 }
 
+func TestNullableShouldBeErrorable(t *testing.T) {
+	var n ErrorableGenericResultInterface = NullableValue(1)
+	if n.IsError() {
+		t.Error("Nullable should implement ErrorableGenericResultInterface")
+	}
+}
+
 func TestNullableValue(t *testing.T) {
 	var n Nullable[int] = NullableValue(1)
 	if n.ValueOrZero() != 1 {
@@ -89,6 +96,27 @@ func TestNullableAsUnwrappableInterfaceUnwrapCase2(t *testing.T) {
 	var n Nullable[int] = Null[int]()
 	n.Unwrap()
 	t.Error("Nullable should panic on nil value unwrapping")
+}
+
+func TestNullableAsUnwrappableInterfaceUnwrapErrCase1(t *testing.T) {
+	defer func(){
+		if r := recover(); r != nil {
+			t.Error("Nullable should not panic on incorrect value")
+		}
+	}()
+	var n Nullable[int] = Null[int]()
+	n.UnwrapErr()
+}
+
+func TestNullableAsUnwrappableInterfaceUnwrapErrCase2(t *testing.T) {
+	defer func(){
+		if r := recover(); r == nil {
+			t.Error("Nullable should panic on correct value")
+		}
+	}()
+	var n Nullable[int] = NullableValue(1)
+	n.UnwrapErr()
+	t.Error("Nullable should panic on correct value unwrapping")
 }
 
 func TestNullableAsUnwrappableInterfaceUnwrapOr(t *testing.T) {
@@ -171,4 +199,24 @@ func TestNullableAsUnwrappableInterfaceExpectCase2(t *testing.T) {
 	}()
 	var n Nullable[int] = Null[int]()
 	n.Expect(errors.New("test2"))
+}
+
+func TestNullableAsUnwrappableInterfaceExpectErrCase1(t *testing.T) {
+	defer func(){
+		if r := recover(); r != nil {
+			t.Error("Nullable should not panic on correct value")
+		}
+	}()
+	var n Nullable[int] = Null[int]()
+	n.ExpectErr(errors.New("test1"))
+}
+
+func TestNullableAsUnwrappableInterfaceExpectErrCase2(t *testing.T) {
+	defer func(){
+		if r := recover(); r == nil {
+			t.Error("Nullable should panic on incorrect value")
+		}
+	}()
+	var n Nullable[int] = NullableValue(1)
+	n.ExpectErr(errors.New("test2"))
 }

@@ -83,6 +83,14 @@ func (r Result[T]) Unwrap() T {
 	return r.DataValue
 }
 
+// Get underlying error or panic if correct value
+func (r Result[T]) UnwrapErr() error {
+	if !r.IsError() {
+		panic(errors.UnwrapError{})
+	}
+	return r.ErrorValue
+}
+
 // Get underlying value or return default value if error is found
 func (r Result[T]) UnwrapOr(defaultVal T) T {
 	if r.IsError() {
@@ -118,6 +126,13 @@ func (r Result[T]) UnwrapWithErr() (T, error) {
 // Expect correct value if error is found panic with specified message
 func (r Result[T]) Expect(err any) {
 	if r.IsError() {
+		panic(err)
+	}
+}
+
+// Expect error value if error is not found panic with specified message
+func (r Result[T]) ExpectErr(err any) {
+	if !r.IsError() {
 		panic(err)
 	}
 }

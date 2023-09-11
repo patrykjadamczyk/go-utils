@@ -22,3 +22,24 @@ type NullableError struct {
 func (NullableError) Error() string {
 	return "NullableError: Nullable contains null"
 }
+
+type AssertionError struct {
+}
+
+func (AssertionError) Error() string {
+	return "AssertionError: Assertion failed"
+}
+
+type NotImplementedError struct {
+}
+
+func (NotImplementedError) Error() string {
+	return "NotImplementedError: Not Implemented!"
+}
+
+type UnreachableError struct {
+}
+
+func (UnreachableError) Error() string {
+	return "UnreachableError: Unreachable!"
+}

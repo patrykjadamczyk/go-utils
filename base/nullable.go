@@ -116,6 +116,14 @@ func (n Nullable[T]) Unwrap() T {
 	return n.Data
 }
 
+// Get underlying error or panic if correct value
+func (n Nullable[T]) UnwrapErr() error {
+	if n.Valid {
+		panic(errors.UnwrapError{})
+	}
+	return errors.NullableError{}
+}
+
 // Get underlying value or return default value if error is found
 func (n Nullable[T]) UnwrapOr(defaultVal T) T {
 	if !n.Valid {
@@ -159,4 +167,25 @@ func (n Nullable[T]) Expect(err any) {
 	if !n.Valid {
 		panic(err)
 	}
+}
+
+// Expect error value if error is not found panic with specified message
+func (n Nullable[T]) ExpectErr(err any) {
+	if n.Valid {
+		panic(err)
+	}
+}
+
+// Implementation of ErrorableGenericResultInterface
+
+// Check if Object has error
+func (n Nullable[T]) IsError() bool {
+	return !n.Valid
+}
+// Get Error if Object has error or nil if not
+func (n Nullable[T]) GetError() error {
+	if n.Valid {
+		return nil
+	}
+	return errors.NullableError{}
 }

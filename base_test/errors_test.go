@@ -126,3 +126,41 @@ func TestPanicIfErrorFromOutputCase6(t *testing.T) {
 	}()
 	PanicIfErrorFromOutput(errorableFunction6())
 }
+
+func TestAssertionCase1(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Error("Assertion should panic on false value")
+		}
+	}()
+	Assert(false)
+	t.Error("Assertion should panic on false value")
+}
+
+func TestAssertionCase2(t *testing.T) {
+	defer func() {
+		if r := recover(); r != nil {
+			t.Error("Assertion shouldn't panic on true value")
+		}
+	}()
+	Assert(true)
+}
+
+func TestAssertionCase3(t *testing.T) {
+	defer func() {
+		if r := recover(); r != nil {
+			t.Error("Assertion shouldn't panic on true value")
+		}
+	}()
+	AssertCustomError(true, errors.New("Hello"))
+}
+
+func TestAssertionCase4(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Error("Assertion should panic on false value")
+		}
+	}()
+	AssertCustomError(false, errors.New("Hello"))
+	t.Error("Assertion should panic on false value")
+}

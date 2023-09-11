@@ -1,6 +1,7 @@
 package base
 
 import (
+	err "errors"
 	"github.com/patrykjadamczyk/go-utils/errors"
 )
 
@@ -28,4 +29,36 @@ func PanicIfErrorFromOutput(returns ...any) {
 			PanicIfError(err)
 		}
 	}
+}
+
+func NewError(msg string) error {
+	return errors.NewError(msg)
+}
+
+func ExpandError(err error) error {
+	return errors.AddStackTrace(err)
+}
+
+func Assert(cond bool) {
+	if !cond {
+		panic(ExpandError(errors.AssertionError{}))
+	}
+}
+
+func AssertCustomError(cond bool, err error) {
+	if !cond {
+		panic(ExpandError(err))
+	}
+}
+
+func NotImplemented() {
+	panic(ExpandError(errors.NotImplementedError{}))
+}
+
+func Unreachable() {
+	panic(ExpandError(errors.UnreachableError{}))
+}
+
+func NotSupported() {
+	panic(ExpandError(err.ErrUnsupported))
 }
