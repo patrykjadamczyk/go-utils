@@ -50,3 +50,17 @@ func Ternary[V any](condition bool, ifTrue V, ifFalse V) V {
 	}
 	return ifFalse
 }
+
+func TernaryNull[V any](value V, ifNullValue V) V {
+	if any(value) == nil {
+		return ifNullValue
+	}
+	return value
+}
+
+func TernaryNullable[V any](value Nullable[V], ifNullValue V) V {
+	if value.IsError() {
+		return ifNullValue
+	}
+	return value.Data
+}

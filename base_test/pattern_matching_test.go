@@ -2,6 +2,7 @@ package base_test
 
 import (
 	"testing"
+
 	. "github.com/patrykjadamczyk/go-utils/base"
 )
 
@@ -36,5 +37,17 @@ func TestTernary(t *testing.T) {
 	}
 	if tf(false) != 3 {
 		t.Error("false should be 3")
+	}
+	if TernaryNull[error](nil, NewError("test")).Error() != "test" {
+		t.Error("nil should be test")
+	}
+	if TernaryNull[int](1, 2) != 1 {
+		t.Error("1 should be 1")
+	}
+	if TernaryNullable[int](Null[int](), 2) != 2 {
+		t.Error("null should be 2")
+	}
+	if TernaryNullable[int](NullableValue(2), 2) != 2 {
+		t.Error("2 should be 2")
 	}
 }
