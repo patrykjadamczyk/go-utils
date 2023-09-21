@@ -44,6 +44,7 @@ func (s *SwitchResult[SV, V]) Default(f func(SV) V) *SwitchResult[SV, V] {
 }
 
 // Ternary Operation
+// You can see this function as something like condition ? ifTrue : ifFalse
 func Ternary[V any](condition bool, ifTrue V, ifFalse V) V {
 	if condition {
 		return ifTrue
@@ -51,6 +52,8 @@ func Ternary[V any](condition bool, ifTrue V, ifFalse V) V {
 	return ifFalse
 }
 
+// Ternary that checks if value provided is nil if it's nil it uses second argument as return
+// You can see this function as something like value ?? ifNullValue
 func TernaryNull[V any](value V, ifNullValue V) V {
 	if any(value) == nil {
 		return ifNullValue
@@ -58,6 +61,10 @@ func TernaryNull[V any](value V, ifNullValue V) V {
 	return value
 }
 
+// Ternary that checks if value provided is not null according to NullableType if it's null it uses second argument as
+// return
+// You can see this function as something like value ?? ifNullValue but a bit more complicated because it's checks Value
+// for OptionType (Nullable) if it is something or nothing
 func TernaryNullable[V any](value Nullable[V], ifNullValue V) V {
 	if value.IsError() {
 		return ifNullValue
