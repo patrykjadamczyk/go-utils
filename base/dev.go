@@ -23,11 +23,11 @@ func EnsureObjectImplementsInterface[OT any, IT any](self OT) Result[string] {
 	if any(self) == nil {
 		return Err[string](NewError("Object is nil"))
 	}
-	var interfaceValue IT
-	interfaceType := reflect.TypeOf((*IT)(nil)).Elem()
+	interfaceValue := reflect.TypeOf((*IT)(nil))
+	interfaceType := interfaceValue.Elem()
 	selfType := reflect.TypeOf(self)
 	if selfType.Implements(interfaceType) {
 		return Ok(ENSURE_OBJECT_OK_STATE)
 	}
-	return Err[string](NewError(fmt.Sprintf("Object is not %T", interfaceValue)))
+	return Err[string](NewError(fmt.Sprintf("Object is not %s", interfaceValue)))
 }
