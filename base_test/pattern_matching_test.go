@@ -50,4 +50,10 @@ func TestTernary(t *testing.T) {
 	if TernaryNullable[int](NullableValue(2), 2) != 2 {
 		t.Error("2 should be 2")
 	}
+	if TernaryResult(Ok(1), 1, 2) != 1 {
+		t.Error("1 should be 1")
+	}
+	if TernaryResult(Err[int](NewError("test")), 1, 2) != 2 {
+		t.Error("2 should be 2")
+	}
 }

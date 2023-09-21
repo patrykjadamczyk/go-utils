@@ -71,3 +71,11 @@ func TernaryNullable[V any](value Nullable[V], ifNullValue V) V {
 	}
 	return value.Data
 }
+
+// Ternary that checks if result is ok or err and returns specified value for this condition
+func TernaryResult[V any](result Result[V], ifOk V, ifErr V) V {
+	if result.IsError() {
+		return ifErr
+	}
+	return ifOk
+}
