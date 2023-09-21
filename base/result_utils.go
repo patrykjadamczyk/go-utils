@@ -25,3 +25,13 @@ func ConvertToResultMultiple(args ...any) Result[any] {
 	}
 	return MakeOkResult[any](args)
 }
+
+// Check All Results and return first error or last ok value
+func CheckAllResults[T any](results ...Result[T]) Result[T] {
+	for _, result := range results {
+		if result.IsError() {
+			return result
+		}
+	}
+	return results[len(results)-1]
+}

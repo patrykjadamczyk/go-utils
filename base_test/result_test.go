@@ -261,3 +261,14 @@ func TestResultUtils(t *testing.T) {
 		t.Error("Result 3 should be 2")
 	}
 }
+
+func TestCheckAllResults(t *testing.T) {
+	t1 := CheckAllResults[int](Ok(1), Ok(2))
+	if t1.IsError() {
+		t.Error("Result 1 should not be error")
+	}
+	t2 := CheckAllResults(Ok(1), Err[int](errors.New("error")))
+	if !t2.IsError() {
+		t.Error("Result 2 should be error")
+	}
+}
