@@ -20,3 +20,15 @@ func TestEnsureType2(t *testing.T) {
 	EnsureType[string](1)
 	t.Error("EnsureType should panic on invalid data")
 }
+
+func TestEnsureType3(t *testing.T) {
+	if EnsureTypeResult[int](any(1)).IsError() {
+		t.Error("EnsureTypeResult should have ok value on correct data")
+	}
+}
+
+func TestEnsureType4(t *testing.T) {
+	if !EnsureTypeResult[string](1).IsError() {
+		t.Error("EnsureTypeResult should have err value on invalid data")
+	}
+}
