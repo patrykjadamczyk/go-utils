@@ -113,3 +113,25 @@ func TestPipelineArrayAny(t *testing.T) {
 		t.Error("Pipeline array result 1 should be 4")
 	}
 }
+
+func TestPipelineFunc(t *testing.T) {
+	add1 := func(t int) int {
+		return t + 1
+	}
+	pt1 := Pipe(1, add1, add1)
+	if pt1 != any(3) {
+		t.Error("Pipeline result 1 should be 3")
+	}
+	pt2 := PipeTypedReturn[int](1, add1, add1)
+	if pt2 != 3 {
+		t.Error("Pipeline result 2 should be 3")
+	}
+	pt3 := PipeTypedArgReturn[int, int](1, add1, add1)
+	if pt3 != 3 {
+		t.Error("Pipeline result 3 should be 3")
+	}
+	pt4 := PipeTyped[int](1, add1, add1)
+	if pt4 != 3 {
+		t.Error("Pipeline result 4 should be 3")
+	}
+}
