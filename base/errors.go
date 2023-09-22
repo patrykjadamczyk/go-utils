@@ -75,3 +75,14 @@ func Unreachable() {
 func NotSupported() {
 	panic(ExpandError(err.ErrUnsupported))
 }
+
+// Check if 2 errors are equal
+func IsErrorEqual(err1 error, err2 error) bool {
+	if err1 == nil && err2 == nil {
+		return true
+	}
+	if err1 == nil || err2 == nil {
+		return false
+	}
+	return err.Is(err1, err2)
+}
