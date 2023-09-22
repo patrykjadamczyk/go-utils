@@ -27,7 +27,7 @@ func (u UnitValue[T]) String() string {
 func (u UnitValue[T]) GoString() string {
 	var ref T
 	return fmt.Sprintf(
-		"base.Nullable[%T]{%#v %s}",
+		"Unit[%T]{%#v %s}",
 		ref,
 		u.Value,
 		u.UnitName,
