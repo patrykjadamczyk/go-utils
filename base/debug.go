@@ -1,21 +1,21 @@
 package base
 
 // DebugMode Variable
-var DebugMode bool = false
+var DebugMode Observable[bool] = MakeObservable[bool](false)
 
 // Set Debug Mode
 func SetDebugMode(mode bool) {
-	DebugMode = mode
+	DebugMode.SetValue(mode)
 }
 
 // Get Current State of Debug Mode
 func GetDebugMode() bool {
-	return DebugMode
+	return DebugMode.GetValue()
 }
 
 // Execute specified function only in Debug Mode
 func ExecuteInDebugMode(f func()) {
-	if DebugMode {
+	if GetDebugMode() {
 		f()
 	}
 }
