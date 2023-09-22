@@ -1,6 +1,8 @@
 package base
 
 import (
+	"fmt"
+
 	"github.com/patrykjadamczyk/go-utils/errors"
 )
 
@@ -59,6 +61,25 @@ func (r Result[T]) AndThen(fn func(T) any) any {
 		return nil
 	}
 	return fn(r.DataValue)
+}
+
+// String Convert value to string
+func (r Result[T]) String() string {
+	if r.IsError() {
+		return fmt.Sprintf("%s", r.ErrorValue)
+	}
+	return fmt.Sprintf("%s", any(r.DataValue))
+}
+
+// Get Go String
+func (r Result[T]) GoString() string {
+	var ref T
+	return fmt.Sprintf(
+		"Result[%T]{DataValue:%#v,ErrorValue:%#v}",
+		ref,
+		r.DataValue,
+		r.ErrorValue,
+	)
 }
 
 // Implementation of ErrorableGenericResultInterface
