@@ -36,3 +36,8 @@ func CheckErr(possibleError any) bool {
 	}
 	return false
 }
+
+// Return a pointer copy of value
+func ToPtr[T any](value T) *T {
+	return &value
+}
