@@ -59,7 +59,7 @@ func TestNullableValue(t *testing.T) {
 		t.Error("Nullable should be equal")
 	}
 
-	if n1.GoString() != "base.Nullable[int]{Data:1,Valid:true}" {
+	if n1.GoString() != "Nullable[int]{Data:1,Valid:true}" {
 		t.Error("Nullable should have correct GoString")
 	}
 }
