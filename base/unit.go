@@ -39,6 +39,11 @@ func Unit[T any](value T, unitName string) UnitValue[T] {
 	return UnitValue[T]{Value: value, UnitName: unitName}
 }
 
+// Make Empty Unit
+func MakeEmptyUnit[T any](unitName string) UnitValue[T] {
+	return Unit[T](NullValue[T](), unitName)
+}
+
 // Make function that will return unit
 // This is factory of method to make function for specific unit
 func MakeUnit[T any](unitName string) func(T) UnitValue[T] {
@@ -47,6 +52,9 @@ func MakeUnit[T any](unitName string) func(T) UnitValue[T] {
 	}
 }
 
+var UnitInvalidUnitError = NewError("Invalid Unit")
+var UnitInvalidTypeError = NewError("Invalid Type")
+
 // Make function that will normalize to unit type
 func NormalizeUnit[T any](unitName string) func(any) Result[UnitValue[T]] {
 	return func(value any) Result[UnitValue[T]] {
@@ -54,11 +62,11 @@ func NormalizeUnit[T any](unitName string) func(any) Result[UnitValue[T]] {
 			if uv.GetUnitName() == unitName {
 				return Ok[UnitValue[T]](uv)
 			}
-			return Err[UnitValue[T]](NewError("Invalid Unit"))
+			return Err[UnitValue[T]](UnitInvalidUnitError)
 		}
 		if v, ok := value.(T); ok {
 			return Ok[UnitValue[T]](Unit[T](v, unitName))
 		}
-		return Err[UnitValue[T]](NewError("Invalid Type"))
+		return Err[UnitValue[T]](UnitInvalidTypeError)
 	}
 }
