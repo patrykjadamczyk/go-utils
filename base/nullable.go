@@ -41,6 +41,11 @@ func Null[T any]() Nullable[T] {
 	return Nullable[T]{}
 }
 
+// Null value
+func NullValue[T any]() T {
+	return Null[T]().ValueOrZero()
+}
+
 // ValueOrZero Get Value, or default zero value if it is NULL
 func (n Nullable[T]) ValueOrZero() T {
 	if !n.Valid {
