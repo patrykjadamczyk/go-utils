@@ -1,0 +1,3 @@
+#!/usr/bin/env pwsh
+Clear-Host
+gotestsum --watch  -- -v -count=1 ./...
