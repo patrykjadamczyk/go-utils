@@ -172,7 +172,6 @@ func TestChangePanicIntoError(t *testing.T) {
 	t2 := PanicToError(func () int {
 		return 1
 	})
-	Dump(t1)
 	if !t1.IsError() {
 		t.Error("PanicToError should return error")
 	}
