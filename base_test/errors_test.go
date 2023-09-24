@@ -164,3 +164,22 @@ func TestAssertionCase4(t *testing.T) {
 	AssertCustomError(false, errors.New("Hello"))
 	t.Error("Assertion should panic on false value")
 }
+
+func TestChangePanicIntoError(t *testing.T) {
+	t1 := PanicToError(func () int {
+		panic(NewError("Hello World"))
+	})
+	t2 := PanicToError(func () int {
+		return 1
+	})
+	Dump(t1)
+	if !t1.IsError() {
+		t.Error("PanicToError should return error")
+	}
+	if t2.IsError() {
+		t.Error("PanicToError should not return error")
+	}
+	if t2.UnwrapOr(2) != 1 {
+		t.Error("PanicToError should return 1")
+	}
+}

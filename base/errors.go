@@ -86,3 +86,28 @@ func IsErrorEqual(err1 error, err2 error) bool {
 	}
 	return err.Is(err1, err2)
 }
+
+// Change block that could panic into Result with error as value
+// Note this function only catches panic errors and strings
+func PanicToError[T any](f func() T) Result[T] {
+	r := MakeResult[T]()
+	pf := func() {
+		defer func() {
+			if recovered := recover(); recovered != nil {
+				if err, ok := recovered.(error); ok {
+					r = Err[T](err)
+					return
+				}
+				if errs, ok := recovered.(string); ok {
+					r = Err[T](NewError(errs))
+					return
+				}
+				panic(r)
+			}
+		}()
+		fr := f()
+		r = Ok[T](fr)
+	}
+	pf()
+	return r
+}
