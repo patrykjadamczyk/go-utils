@@ -52,7 +52,7 @@ func (p PipelineArray) Any(args ...[]any) Pipeline {
 		errs := make([]error, len(p.Pipelines))
 		for i, p := range p.Pipelines {
 			p.Evaluate(args[i]...)
-			if p.IsError() == false {
+			if !p.IsError() {
 				return p.Value(), []error{}, errors.NilErrorErr
 			}
 			result[i] = p.Value()

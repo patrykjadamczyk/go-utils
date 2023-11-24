@@ -7,15 +7,15 @@ import (
 )
 
 type Promise struct {
-	wg sync.WaitGroup
-    Function any
-    Result any
-    Error error
+	Function any
+	Result   any
+	Error    error
+	wg       sync.WaitGroup
 }
 
 // Make Promise
 func MakePromise(f any) Promise {
-    if utils.IsFunc(f) == false {
+    if !utils.IsFunc(f) {
         panic("Value is not a function")
     }
     return Promise{Function: f}

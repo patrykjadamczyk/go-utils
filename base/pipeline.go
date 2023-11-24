@@ -16,7 +16,7 @@ type Pipeline struct {
 
 // Make New Pipeline from specified function
 func MakePipeline(value any) Pipeline {
-	if utils.IsFunc(value) == false {
+	if !utils.IsFunc(value) {
 		panic("Value is not a function")
 	}
 	return Pipeline{Function: value}
@@ -24,7 +24,7 @@ func MakePipeline(value any) Pipeline {
 
 // Make New Pipeline from specified pointer to function
 func MakePipelineFromPointer(value *any) Pipeline {
-	if utils.IsFunc(*value) == false {
+	if !utils.IsFunc(*value) {
 		panic("Value is not a function")
 	}
 	return MakePipeline(*value)
@@ -147,7 +147,7 @@ func (p *Pipeline) GetErrorSpecial() error {
 
 // Do something if Pipeline doesn't have any error
 func (p *Pipeline) Then(f any) *Pipeline {
-	if utils.IsFunc(f) == false {
+	if !utils.IsFunc(f) {
 		panic("Value is not a function")
 	}
 	if p.IsError() {
@@ -160,10 +160,10 @@ func (p *Pipeline) Then(f any) *Pipeline {
 
 // Do something if Pipeline has error
 func (p *Pipeline) Catch(f any) *Pipeline {
-	if utils.IsFunc(f) == false {
+	if !utils.IsFunc(f) {
 		panic("Value is not a function")
 	}
-	if p.IsError() == false {
+	if !p.IsError() {
 		return p
 	}
 	p.Function = f
@@ -174,7 +174,7 @@ func (p *Pipeline) Catch(f any) *Pipeline {
 
 // Do something no matter if Pipeline has error or no
 func (p *Pipeline) Finally(f any) *Pipeline {
-	if utils.IsFunc(f) == false {
+	if !utils.IsFunc(f) {
 		panic("Value is not a function")
 	}
 	p.Function = f

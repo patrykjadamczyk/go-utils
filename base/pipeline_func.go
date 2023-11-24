@@ -5,7 +5,7 @@ import "github.com/patrykjadamczyk/go-utils/utils"
 // Pipeline Function
 // Call like Pipe(1, f1, f2, f3) should work similiarly to 1 |> f1 |> f2 |> f3
 func Pipe(initialArgument any, functions ...any) any {
-	var result any = initialArgument
+	var result = initialArgument
 	for _, function := range functions {
 		tempResult := utils.CallFunc(function, result)
 		tempResult2 := utils.ReflectValueToValue(tempResult...)
@@ -36,7 +36,7 @@ func PipeTyped[VT any](
 	initialArgument VT,
 	functions ...func(VT) VT,
 ) VT {
-	var result VT = initialArgument
+	var result = initialArgument
 	for _, function := range functions {
 		result = function(result)
 	}

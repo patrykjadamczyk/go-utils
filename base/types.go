@@ -2,9 +2,9 @@ package base
 
 // Ensure that value is of type T or panic
 func EnsureType[T any](value any) T {
-    switch value.(type) {
+    switch value := value.(type) {
     case T:
-        return value.(T)
+        return value
     default:
         panic("Invalid Type")
     }
