@@ -15,6 +15,16 @@ func ErrWithValue[T any](value T, err error) Result[T] {
 	return MakeErrorResultWithValue[T](value, err)
 }
 
+// Make Nullable type with correct value
+func Some[T any](value T) Nullable[T] {
+    return NullableValue[T](value)
+}
+
+// Make Nullable type with null value
+func None[T any]() Nullable[T] {
+    return Null[T]()
+}
+
 // Check if specified value is error
 // Supports error, ErrorableGenericResultInterface, bool, int, uint
 // If it gets other value it returns false
