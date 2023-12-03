@@ -25,6 +25,14 @@ func (e Exception) Error() string {
 	return fmt.Sprintf("%s: %s", e.Category, e.Message)
 }
 
+func (e Exception) GoString() string {
+	return e.Error()
+}
+
+func (e Exception) String() string {
+	return e.GoString()
+}
+
 type ExtendedException struct {
 	Exception
 	Stacktrace string
@@ -72,6 +80,18 @@ func (e ExtendedException) fillStackTrace() string {
 	return resultStacktrace
 }
 
+func (e ExtendedException) GoString() string {
+	notes := ""
+	if (len(e.Notes) > 0) {
+		notes = fmt.Sprintf("\nNotes:\n%v", e.Notes)
+	}
+	return fmt.Sprintf("%s\n%s%s", e.Error(), e.Stacktrace, notes)
+}
+
+func (e ExtendedException) String() string {
+	return e.GoString()
+}
+
 type SubCategoryExtendedException struct {
 	ExtendedException
 }
@@ -85,4 +105,16 @@ func (e *SubCategoryExtendedException) Init(category ExceptionCategory, subcateg
 	e.Message = msg
 	e.Stacktrace = e.fillStackTrace()
 	e.Notes = make([]string, 0)
+}
+
+func (e SubCategoryExtendedException) GoString() string {
+	notes := ""
+	if (len(e.Notes) > 0) {
+		notes = fmt.Sprintf("\nNotes:\n%v", e.Notes)
+	}
+	return fmt.Sprintf("%s\n%s%s", e.Error(), e.Stacktrace, notes)
+}
+
+func (e SubCategoryExtendedException) String() string {
+	return e.GoString()
 }
