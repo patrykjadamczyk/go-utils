@@ -6,8 +6,8 @@ import (
 
 // Database Structure
 type DB[TKey comparable, TValue any] struct {
-	mu   sync.RWMutex
 	data map[TKey]TValue
+	mu   sync.RWMutex
 }
 
 // Create Database
@@ -80,8 +80,7 @@ func (db *DB[TKey, TValue]) Begin(writable bool) *Tx[TKey, TValue] {
 
 // Managed Function for Database
 func (db *DB[TKey, TValue]) managed(writable bool, fn func(tx *Tx[TKey, TValue]) error) (err error) {
-	var tx *Tx[TKey, TValue]
-	tx = db.Begin(writable)
+	var tx = db.Begin(writable)
 	defer func() {
 		tx.unlock()
 	}()

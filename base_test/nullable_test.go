@@ -30,7 +30,7 @@ func TestNullableShouldBeErrorable(t *testing.T) {
 }
 
 func TestNullableValue(t *testing.T) {
-	var n Nullable[int] = NullableValue(1)
+	var n = NullableValue(1)
 	if n.ValueOrZero() != 1 {
 		t.Error("Nullable should be 1")
 	}
@@ -65,7 +65,7 @@ func TestNullableValue(t *testing.T) {
 }
 
 func TestNullableAndThen(t *testing.T) {
-	var n Nullable[int] = NullableValue(1)
+	var n = NullableValue(1)
 	f := func(v int) any {
 		return any(v+1)
 	}
@@ -81,7 +81,7 @@ func TestNullableAsUnwrappableInterfaceUnwrapCase1(t *testing.T) {
 			t.Error("Nullable should not panic on correct value")
 		}
 	}()
-	var n Nullable[int] = NullableValue(1)
+	var n = NullableValue(1)
 	if n.Unwrap() != 1 {
 		t.Error("Nullable should be 1")
 	}
@@ -93,7 +93,7 @@ func TestNullableAsUnwrappableInterfaceUnwrapCase2(t *testing.T) {
 			t.Error("Nullable should panic on incorrect value")
 		}
 	}()
-	var n Nullable[int] = Null[int]()
+	var n = Null[int]()
 	n.Unwrap()
 	t.Error("Nullable should panic on nil value unwrapping")
 }
@@ -104,8 +104,8 @@ func TestNullableAsUnwrappableInterfaceUnwrapErrCase1(t *testing.T) {
 			t.Error("Nullable should not panic on incorrect value")
 		}
 	}()
-	var n Nullable[int] = Null[int]()
-	n.UnwrapErr()
+	var n = Null[int]()
+	_ = n.UnwrapErr()
 }
 
 func TestNullableAsUnwrappableInterfaceUnwrapErrCase2(t *testing.T) {
@@ -114,13 +114,13 @@ func TestNullableAsUnwrappableInterfaceUnwrapErrCase2(t *testing.T) {
 			t.Error("Nullable should panic on correct value")
 		}
 	}()
-	var n Nullable[int] = NullableValue(1)
-	n.UnwrapErr()
+	var n = NullableValue(1)
+	_ = n.UnwrapErr()
 	t.Error("Nullable should panic on correct value unwrapping")
 }
 
 func TestNullableAsUnwrappableInterfaceUnwrapOr(t *testing.T) {
-	var n Nullable[int] = NullableValue(1)
+	var n = NullableValue(1)
 	if n.UnwrapOr(2) != 1 {
 		t.Error("Nullable should be 1")
 	}
@@ -131,8 +131,8 @@ func TestNullableAsUnwrappableInterfaceUnwrapOr(t *testing.T) {
 }
 
 func TestNullableAsUnwrappableInterfaceUnwrapOrErr(t *testing.T) {
-	var n Nullable[int] = NullableValue(1)
-	if n.UnwrapOrErr(func(n Nullable[int]) {
+	var n = NullableValue(1)
+	if n.UnwrapOrErr(func(_ Nullable[int]) {
 		t.Error("Nullable should be 1 and not call err function")
 	}) != 1 {
 		t.Error("Nullable should be 1")
@@ -145,8 +145,8 @@ func TestNullableAsUnwrappableInterfaceUnwrapOrErr(t *testing.T) {
 }
 
 func TestNullableAsUnwrappableInterfaceUnwrapAsResultOrErr(t *testing.T) {
-	var n Nullable[int] = NullableValue(1)
-	if n.UnwrapAsResultOrErr(func(n Nullable[int]) {
+	var n = NullableValue(1)
+	if n.UnwrapAsResultOrErr(func(_ Nullable[int]) {
 		t.Error("Nullable should be 1 and not call err function")
 	}).UnwrapOr(2) != 1 {
 		t.Error("Nullable should be 1")
@@ -163,7 +163,7 @@ func TestNullableAsUnwrappableInterfaceUnwrapAsResultOrErr(t *testing.T) {
 }
 
 func TestNullableAsUnwrappableInterfaceUnwrapWithErr(t *testing.T) {
-	var n Nullable[int] = NullableValue(1)
+	var n = NullableValue(1)
 	nr1, err1 := n.UnwrapWithErr()
 	if nr1 != 1 {
 		t.Error("Nullable should be 1")
@@ -187,7 +187,7 @@ func TestNullableAsUnwrappableInterfaceExpectCase1(t *testing.T) {
 			t.Error("Nullable should not panic on correct value")
 		}
 	}()
-	var n Nullable[int] = NullableValue(1)
+	var n = NullableValue(1)
 	n.Expect(errors.New("test1"))
 }
 
@@ -197,7 +197,7 @@ func TestNullableAsUnwrappableInterfaceExpectCase2(t *testing.T) {
 			t.Error("Nullable should panic on incorrect value")
 		}
 	}()
-	var n Nullable[int] = Null[int]()
+	var n = Null[int]()
 	n.Expect(errors.New("test2"))
 }
 
@@ -207,7 +207,7 @@ func TestNullableAsUnwrappableInterfaceExpectErrCase1(t *testing.T) {
 			t.Error("Nullable should not panic on correct value")
 		}
 	}()
-	var n Nullable[int] = Null[int]()
+	var n = Null[int]()
 	n.ExpectErr(errors.New("test1"))
 }
 
@@ -217,6 +217,6 @@ func TestNullableAsUnwrappableInterfaceExpectErrCase2(t *testing.T) {
 			t.Error("Nullable should panic on incorrect value")
 		}
 	}()
-	var n Nullable[int] = NullableValue(1)
+	var n = NullableValue(1)
 	n.ExpectErr(errors.New("test2"))
 }

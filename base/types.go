@@ -17,3 +17,9 @@ func EnsureTypeResult[T any](value any) Result[T] {
     }
     return Err[T](NewError("Invalid Type"))
 }
+
+// Ensure that value is of type T and return bool
+func EnsureTypeBool[T any](value any) bool {
+    _, ok := value.(T)
+    return ok
+}
