@@ -11,10 +11,7 @@ func TestGenerator(t *testing.T) {
 	genResults := MakeGenerator[int](stopGeneratorChan, func(ch chan int) bool {
 		state++
 		Yield(ch, state)
-		if state == 3 {
-			return false
-		}
-		return true
+		return state != 3
 	})
 	state2 := 0
 	for v := range genResults {
