@@ -118,3 +118,9 @@ func (e SubCategoryExtendedException) GoString() string {
 func (e SubCategoryExtendedException) String() string {
 	return e.GoString()
 }
+
+func MakeException(category ExceptionCategory, subcategory ExceptionCategory, msg string) SubCategoryExtendedException {
+	e := SubCategoryExtendedException{}
+    e.Init(category, subcategory, msg)
+    return e
+}
