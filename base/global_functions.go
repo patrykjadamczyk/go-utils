@@ -3,6 +3,8 @@ package base
 import (
 	"reflect"
 	"time"
+
+	"github.com/patrykjadamczyk/go-utils/utils"
 )
 
 // Make Result with ok value
@@ -96,4 +98,25 @@ func AttemptWithDelay[T any](retries int, delay time.Duration, action func() Res
 	}
 
 	return retries, result
+}
+
+// Try calls the function and return false in case of error.
+func Try(callback any) (ok bool) {
+	ok = true
+
+	defer func() {
+		if r := recover(); r != nil {
+			ok = false
+		}
+	}()
+
+	result := utils.CallFuncWithoutArgs(callback)
+	resultAny := utils.ReflectValueToValue(result...)
+	resultVal := ConvertToResultMultiple(resultAny...)
+
+	if resultVal.IsError() {
+		ok = false
+	}
+
+	return
 }
