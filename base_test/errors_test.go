@@ -1,10 +1,10 @@
 package base_test
 
 import (
-	"testing"
 	"errors"
 	. "github.com/patrykjadamczyk/go-utils/base"
 	err "github.com/patrykjadamczyk/go-utils/errors"
+	"testing"
 )
 
 func TestIsError(t *testing.T) {
@@ -166,10 +166,10 @@ func TestAssertionCase4(t *testing.T) {
 }
 
 func TestChangePanicIntoError(t *testing.T) {
-	t1 := PanicToError(func () int {
+	t1 := PanicToError(func() int {
 		panic(NewError("Hello World"))
 	})
-	t2 := PanicToError(func () int {
+	t2 := PanicToError(func() int {
 		return 1
 	})
 	if !t1.IsError() {

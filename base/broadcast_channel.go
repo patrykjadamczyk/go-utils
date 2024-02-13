@@ -28,5 +28,5 @@ func (bc BroadcastChannel[T]) Broadcast(message T) {
 
 // Make Broadcast Channel
 func MakeBroadcastChannel[T any]() BroadcastChannel[T] {
-    return BroadcastChannel[T]{}
+	return BroadcastChannel[T]{}
 }

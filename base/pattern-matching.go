@@ -5,7 +5,7 @@ type SwitchResult[SV any, V any] struct {
 	// Value to Switch On
 	SwitchValue SV
 	// Result Value
-	Value       V
+	Value V
 	// Is Switch Found
 	SwitchFound bool
 }

@@ -47,23 +47,23 @@ type DefaultableInterface[T any] interface {
 
 // Assertable Interface Object
 type AssertableInterface interface {
-    // Method that checks if object is valid
-    // This method should use Assert method inside or AssertCustomError method
-    Assert()
+	// Method that checks if object is valid
+	// This method should use Assert method inside or AssertCustomError method
+	Assert()
 }
 
 type AssertableBoolInterface interface {
-    // Method that checks if object is valid
-    // This method should return bool if object is valid
-    AssertBool() bool
+	// Method that checks if object is valid
+	// This method should return bool if object is valid
+	AssertBool() bool
 }
 
 // Guarded Object Interface
 // Guarded Object is meant to be object that has some guards that need to be the case or this object is not valid at all
 type GuardedObjectInterface interface {
-    // Initialize method for Guarded Object
-    // This method is meant to be used in init method of module and contain only assert that check for example if object
-    // is compatible with some interfaces or some version of go or something else and things like that for objects logic
-    // to be correct
-    GuardInit()
+	// Initialize method for Guarded Object
+	// This method is meant to be used in init method of module and contain only assert that check for example if object
+	// is compatible with some interfaces or some version of go or something else and things like that for objects logic
+	// to be correct
+	GuardInit()
 }

@@ -56,7 +56,7 @@ func TestContextManager(t *testing.T) {
 		t.Error("Result 2 should be OK")
 	}
 
-	WithGoContext(&t1, func (_ GoContextManagerInterface) int {
+	WithGoContext(&t1, func(_ GoContextManagerInterface) int {
 		if t1.state != 0 {
 			t.Error("t1 should be 0", t1.state)
 		}
@@ -65,7 +65,7 @@ func TestContextManager(t *testing.T) {
 	if t1.state != 1 {
 		t.Error("t1 should be 1", t1.state)
 	}
-	WithContext(&t2, func (_ ContextManagerInterface) int {
+	WithContext(&t2, func(_ ContextManagerInterface) int {
 		if t2.state != 12 {
 			t.Error("t2 should be 12", t2.state)
 		}

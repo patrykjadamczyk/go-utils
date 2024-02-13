@@ -21,10 +21,10 @@ func NullableValue[T any](value T) Nullable[T] {
 		return Nullable[T]{Valid: false}
 	}
 	switch any(value).(type) {
-		case errors.NilError:
-			return Nullable[T]{Valid: false}
-		default:
-			return Nullable[T]{Data: value, Valid: true}
+	case errors.NilError:
+		return Nullable[T]{Valid: false}
+	default:
+		return Nullable[T]{Data: value, Valid: true}
 	}
 }
 
@@ -146,7 +146,6 @@ func (n Nullable[T]) UnwrapOrErr(f func(Nullable[T])) T {
 	return n.ValueOrZero()
 }
 
-
 // Unwraps as result type for if error checks and run specified function f
 // instead of panic
 // Return result of underlying value (having err if it's found)
@@ -187,6 +186,7 @@ func (n Nullable[T]) ExpectErr(err any) {
 func (n Nullable[T]) IsError() bool {
 	return !n.Valid
 }
+
 // Get Error if Object has error or nil if not
 func (n Nullable[T]) GetError() error {
 	if n.Valid {

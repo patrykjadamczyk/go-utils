@@ -28,7 +28,6 @@ func Map[T any, R any](collection []T, iteratee func(item T, index int) R) []R {
 // The callback function should return two values:
 //   - the result of the mapping operation and
 //   - whether the result element should be included or not.
-//
 func FilterMap[T any, R any](collection []T, callback func(item T, index int) (R, bool)) []R {
 	result := []R{}
 

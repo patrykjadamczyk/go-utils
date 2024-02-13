@@ -97,4 +97,3 @@ func getMinForType(value any) any {
 		panic(fmt.Sprintf("Invalid Type %s", reflect.TypeOf(value).Name()))
 	}
 }
-

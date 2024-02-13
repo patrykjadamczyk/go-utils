@@ -1,8 +1,8 @@
 package base_test
 
 import (
-	"testing"
 	. "github.com/patrykjadamczyk/go-utils/base"
+	"testing"
 )
 
 func TestPromise(t *testing.T) {

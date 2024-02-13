@@ -7,13 +7,13 @@ import (
 // Check if specified value is array
 func IsArray(val any) bool {
 	kind := reflect.TypeOf(val).Kind()
-    return kind == reflect.Array || kind == reflect.Slice
+	return kind == reflect.Array || kind == reflect.Slice
 }
 
 // Check if specified value is function
 func IsFunc(val any) bool {
-    kind := reflect.TypeOf(val).Kind()
-    return kind == reflect.Func
+	kind := reflect.TypeOf(val).Kind()
+	return kind == reflect.Func
 }
 
 // Call specified function with specified arguments

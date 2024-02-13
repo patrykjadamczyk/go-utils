@@ -1,8 +1,8 @@
 package base_test
 
 import (
-    . "github.com/patrykjadamczyk/go-utils/base"
-    "testing"
+	. "github.com/patrykjadamczyk/go-utils/base"
+	"testing"
 )
 
 func TestDebugMode(t *testing.T) {
@@ -41,14 +41,14 @@ func TestDebugMode(t *testing.T) {
 }
 
 func TestExecuteAndPassthrough(t *testing.T) {
-	test := func (args []any) []any {
+	test := func(args []any) []any {
 		t := 0
 		for _, v := range args {
 			t += v.(int)
 		}
 		return []any{t}
 	}
-	testdata := []any{1,2,3}
+	testdata := []any{1, 2, 3}
 	result := ExecuteAndPassthrough(test, testdata...)
 	if len(result) != 1 {
 		t.Error("result should be 1 element")

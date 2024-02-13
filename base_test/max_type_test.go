@@ -1,10 +1,10 @@
 package base_test
 
 import (
-	"testing"
 	"fmt"
-	"math"
 	. "github.com/patrykjadamczyk/go-utils/base"
+	"math"
+	"testing"
 )
 
 func TestMaxType(t *testing.T) {
@@ -12,11 +12,11 @@ func TestMaxType(t *testing.T) {
 		input    int64
 		expected int64
 	}{
-		{input: int64(GetMaxForType[int]()),    expected: math.MaxInt},
-		{input: int64(GetMaxForType[int8]()),   expected: math.MaxInt8},
-		{input: int64(GetMaxForType[int16]()),  expected: math.MaxInt16},
-		{input: int64(GetMaxForType[int32]()),  expected: math.MaxInt32},
-		{input: int64(GetMaxForType[int64]()),  expected: math.MaxInt64},
+		{input: int64(GetMaxForType[int]()), expected: math.MaxInt},
+		{input: int64(GetMaxForType[int8]()), expected: math.MaxInt8},
+		{input: int64(GetMaxForType[int16]()), expected: math.MaxInt16},
+		{input: int64(GetMaxForType[int32]()), expected: math.MaxInt32},
+		{input: int64(GetMaxForType[int64]()), expected: math.MaxInt64},
 	}
 
 	for i, tc := range testCases {
@@ -30,7 +30,7 @@ func TestMaxType(t *testing.T) {
 		input    uint64
 		expected uint64
 	}{
-		{input: uint64(GetMaxForType[uint8]()),  expected: uint64(math.MaxUint8)},
+		{input: uint64(GetMaxForType[uint8]()), expected: uint64(math.MaxUint8)},
 		{input: uint64(GetMaxForType[uint16]()), expected: uint64(math.MaxUint16)},
 		{input: uint64(GetMaxForType[uint32]()), expected: uint64(math.MaxUint32)},
 	}
@@ -76,11 +76,11 @@ func TestMinType(t *testing.T) {
 		input    int64
 		expected int64
 	}{
-		{input: int64(GetMinForType[int]()),    expected: math.MinInt},
-		{input: int64(GetMinForType[int8]()),   expected: math.MinInt8},
-		{input: int64(GetMinForType[int16]()),  expected: math.MinInt16},
-		{input: int64(GetMinForType[int32]()),  expected: math.MinInt32},
-		{input: int64(GetMinForType[int64]()),  expected: math.MinInt64},
+		{input: int64(GetMinForType[int]()), expected: math.MinInt},
+		{input: int64(GetMinForType[int8]()), expected: math.MinInt8},
+		{input: int64(GetMinForType[int16]()), expected: math.MinInt16},
+		{input: int64(GetMinForType[int32]()), expected: math.MinInt32},
+		{input: int64(GetMinForType[int64]()), expected: math.MinInt64},
 	}
 
 	for i, tc := range testCases {
@@ -91,7 +91,7 @@ func TestMinType(t *testing.T) {
 		})
 	}
 	testCases2 := []struct {
-		input    uint64
+		input uint64
 	}{
 		{input: uint64(GetMinForType[uint]())},
 		{input: uint64(GetMinForType[uint8]())},

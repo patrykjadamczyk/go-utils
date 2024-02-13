@@ -4,7 +4,7 @@ type NilError struct {
 }
 
 func (NilError) Error() string {
-    return "NilError"
+	return "NilError"
 }
 
 var NilErrorErr NilError = NilError{}

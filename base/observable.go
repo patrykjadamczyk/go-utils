@@ -2,7 +2,7 @@ package base
 
 // Observable Object
 type Observable[T any] struct {
-	Value T
+	Value       T
 	GetHandlers []func(Observable[T])
 	SetHandlers []func(Observable[T])
 }

@@ -4,7 +4,7 @@ import "fmt"
 
 // Note that some value has specific unit like seconds
 type UnitValue[T any] struct {
-	Value T
+	Value    T
 	UnitName string
 }
 

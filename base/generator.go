@@ -7,7 +7,7 @@ package base
 // Note that this generator is executed in goroutine
 func MakeGenerator[T any](
 	abortChannel <-chan struct{},
-	generatorFunc func(chan T) (bool),
+	generatorFunc func(chan T) bool,
 ) <-chan T {
 	ch := make(chan T)
 	go func() {
@@ -32,4 +32,3 @@ func MakeGenerator[T any](
 func Yield[T any](ch chan<- T, value T) {
 	ch <- value
 }
-

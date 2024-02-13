@@ -1,8 +1,8 @@
 package base_test
 
 import (
-	"testing"
 	. "github.com/patrykjadamczyk/go-utils/base"
+	"testing"
 )
 
 func TestUnitType(t *testing.T) {
@@ -21,7 +21,7 @@ func TestUnitType(t *testing.T) {
 	if test2.GetUnitName() != "minutes" {
 		t.Errorf("Expected minutes, but got %s", test2.GetUnitName())
 	}
-	tf3 := func (v any) Result[UnitValue[int]] {
+	tf3 := func(v any) Result[UnitValue[int]] {
 		value := NormalizeUnit[int]("hours")(v)
 		if value.IsError() {
 			return Err[UnitValue[int]](value.GetError())

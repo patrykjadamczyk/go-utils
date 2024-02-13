@@ -8,7 +8,7 @@ import (
 )
 
 func TestPipeline(t *testing.T) {
-	p := MakePipeline(func (v int) int {
+	p := MakePipeline(func(v int) int {
 		return v + 1
 	})
 	pd := p.Run(1)
@@ -18,7 +18,7 @@ func TestPipeline(t *testing.T) {
 	if pd[0] != 2 {
 		t.Error("Pipeline result should be 2")
 	}
-	p2 := MakePipeline(func (v int) int {
+	p2 := MakePipeline(func(v int) int {
 		return v + 2
 	})
 	p2 = *p2.Evaluate(2).EvaluateOnData()
@@ -32,7 +32,7 @@ func TestPipeline(t *testing.T) {
 	if p2.IsError() {
 		t.Error("Pipeline 2 should not have error")
 	}
-	p3 := MakePipeline(func (v int) int {
+	p3 := MakePipeline(func(v int) int {
 		return v + 3
 	})
 	p3 = *p3.Evaluate(3)

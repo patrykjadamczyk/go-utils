@@ -23,5 +23,5 @@ func (tso *ThreadSafeObject[T]) Get() T {
 }
 
 func MakeThreadSafeObject[T any](obj T) ThreadSafeObject[T] {
-    return ThreadSafeObject[T]{obj: obj}
+	return ThreadSafeObject[T]{obj: obj}
 }

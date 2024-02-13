@@ -3,7 +3,7 @@ package base
 // Range function returns an array to be used with for i := range Range(end)
 // This index will start from 0 to end
 func Range(end int) []int {
-	return make([]int, end + 1)
+	return make([]int, end+1)
 }
 
 // Range function returns an array to be used with for i := range RangeNonInclusive(end)

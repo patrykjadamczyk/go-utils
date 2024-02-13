@@ -1,12 +1,12 @@
 package base
 
 type FeatureFlags struct {
-	IntFlags map[string]int64
-	UIntFlags map[string]uint64
+	IntFlags    map[string]int64
+	UIntFlags   map[string]uint64
 	StringFlags map[string]string
-	BoolFlags map[string]bool
-	FloatFlags map[string]float64
-	AnyFlags map[string]any
+	BoolFlags   map[string]bool
+	FloatFlags  map[string]float64
+	AnyFlags    map[string]any
 }
 
 func (f FeatureFlags) Dev() Result[string] {

@@ -8,12 +8,12 @@ import (
 
 func TestSwitch(t *testing.T) {
 	tf := func(v int) int {
-		return Switch[int, int](v).Case(func (v int) (int, bool) {
+		return Switch[int, int](v).Case(func(v int) (int, bool) {
 			if v == 1 {
 				return 2, true
 			}
 			return 0, false
-		}).Default(func (v int) int {
+		}).Default(func(v int) int {
 			return 3
 		}).Value
 	}

@@ -36,7 +36,7 @@ func (e Exception) String() string {
 type ExtendedException struct {
 	Exception
 	Stacktrace string
-	Notes []string
+	Notes      []string
 }
 
 func (e ExtendedException) GuardInit() {
@@ -82,7 +82,7 @@ func (e ExtendedException) fillStackTrace() string {
 
 func (e ExtendedException) GoString() string {
 	notes := ""
-	if (len(e.Notes) > 0) {
+	if len(e.Notes) > 0 {
 		notes = fmt.Sprintf("\nNotes:\n%v", e.Notes)
 	}
 	return fmt.Sprintf("%s\n%s%s", e.Error(), e.Stacktrace, notes)
@@ -109,7 +109,7 @@ func (e *SubCategoryExtendedException) Init(category ExceptionCategory, subcateg
 
 func (e SubCategoryExtendedException) GoString() string {
 	notes := ""
-	if (len(e.Notes) > 0) {
+	if len(e.Notes) > 0 {
 		notes = fmt.Sprintf("\nNotes:\n%v", e.Notes)
 	}
 	return fmt.Sprintf("%s\n%s%s", e.Error(), e.Stacktrace, notes)
@@ -121,6 +121,6 @@ func (e SubCategoryExtendedException) String() string {
 
 func MakeException(category ExceptionCategory, subcategory ExceptionCategory, msg string) SubCategoryExtendedException {
 	e := SubCategoryExtendedException{}
-    e.Init(category, subcategory, msg)
-    return e
+	e.Init(category, subcategory, msg)
+	return e
 }
