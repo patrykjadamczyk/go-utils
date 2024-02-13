@@ -1,5 +1,9 @@
 package base
 
+import (
+	"reflect"
+)
+
 // Make Result with ok value
 func Ok[T any](value T) Result[T] {
 	return MakeOkResult[T](value)
@@ -50,4 +54,10 @@ func CheckErr(possibleError any) bool {
 // Return a pointer copy of value
 func ToPtr[T any](value T) *T {
 	return &value
+}
+
+// IsNil checks if a value is nil or if it's a reference type with a nil underlying value.
+func IsNil(x any) bool {
+	defer func() { recover() }() // nolint:errcheck
+	return x == nil || reflect.ValueOf(x).IsNil()
 }
