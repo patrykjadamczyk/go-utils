@@ -61,6 +61,16 @@ func TernaryNull[V any](value V, ifNullValue V) V {
 	return value
 }
 
+// Ternary that checks if value provided is nil if it's nil it uses second argument as return
+// You can see this function as something like value ?? ifNullValue
+// This function checks for nil using IsNil function
+func TernaryNil[V any](value V, ifNullValue V) V {
+	if IsNil(value) {
+		return ifNullValue
+	}
+	return value
+}
+
 // Ternary that checks if value provided is not null according to NullableType if it's null it uses second argument as
 // return
 // You can see this function as something like value ?? ifNullValue but a bit more complicated because it's checks Value
