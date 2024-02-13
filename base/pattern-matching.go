@@ -89,3 +89,21 @@ func TernaryResult[V any](result Result[V], ifOk V, ifErr V) V {
 	}
 	return ifOk
 }
+
+// Return the first valid value or null zero value if not found
+func Coalesce[V any](values ...V) V {
+	for _, v := range values {
+		switch any(v).(type) {
+			case ErrorableGenericResultInterface:
+				if !EnsureType[ErrorableGenericResultInterface](v).IsError() {
+					return v
+				}
+		default:
+			if !IsNil(v) {
+				return v
+			}
+		}
+	}
+
+	return Null[V]().ValueOrZero()
+}
