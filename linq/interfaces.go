@@ -15,3 +15,13 @@ type IIterable[TV any] interface {
 type IIterableV[TK comparable, TV any] interface {
 	Next() (TK, TV, bool)
 }
+
+type IResetableIterable[TV any] interface {
+	Reset()
+	Next() (TV, bool)
+}
+
+type IResetableIterableV[TK comparable, TV any] interface {
+	Reset()
+	Next() (TK, TV, bool)
+}
