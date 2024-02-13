@@ -23,3 +23,8 @@ func EnsureTypeBool[T any](value any) bool {
 	_, ok := value.(T)
 	return ok
 }
+
+// Cast value to type T or panic
+func Cast[T any](value any) T {
+	return EnsureType[T](value)
+}

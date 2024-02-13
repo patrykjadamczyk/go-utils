@@ -2,7 +2,10 @@ module github.com/patrykjadamczyk/go-utils
 
 go 1.21.0
 
-require github.com/gookit/goutil v0.6.12
+require (
+	github.com/gookit/goutil v0.6.12
+	golang.org/x/exp v0.0.0-20220909182711-5c715a9e8561
+)
 
 require (
 	github.com/gookit/color v1.5.4 // indirect

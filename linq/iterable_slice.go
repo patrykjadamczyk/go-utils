@@ -16,3 +16,7 @@ func (is *IterableSlice[TV]) Next() (TV, bool) {
 	}
 	return is.slice[is.index-1], true
 }
+
+func (is *IterableSlice[TV]) Reset() {
+	is.index = 0
+}
