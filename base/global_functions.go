@@ -120,3 +120,13 @@ func Try(callback any) (ok bool) {
 
 	return
 }
+
+// Identity is a basic Function that returns the original value passed to it, unmodified.
+func Identity[T any](v T) T {
+	return v
+}
+
+// ToAny is a basic Function that returns the original value passed to it, cast to an 'any' type.
+func ToAny[T any](v T) any {
+	return v
+}
