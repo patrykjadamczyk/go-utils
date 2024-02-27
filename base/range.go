@@ -12,17 +12,17 @@ func RangeNonInclusive(end int) []int {
 	return make([]int, end)
 }
 
-// Range function returns an array to be used with for _, i := range StartEndRange(end)
+// Range function returns an array to be used with for _, i := range StartEndRange(start, end)
 func StartEndRange(start int, end int) []int {
 	return ComplexRange(start, end, 1)
 }
 
-// Range function returns an array to be used with for _, i := range StartEndNonInclusiveRange(end)
+// Range function returns an array to be used with for _, i := range StartEndNonInclusiveRange(start, end)
 func StartEndNonInclusiveRange(start int, end int) []int {
 	return ComplexNonInclusiveRange(start, end, 1)
 }
 
-// Range function returns an array to be used with for _, i := range ComplexRange(end)
+// Range function returns an array to be used with for _, i := range ComplexRange(start, end, step)
 func ComplexRange(start int, end int, step int) []int {
 	var result []int
 	for i := start; i <= end; i += step {
@@ -31,7 +31,7 @@ func ComplexRange(start int, end int, step int) []int {
 	return result
 }
 
-// Range function returns an array to be used with for _, i := range ComplexNonInclusiveRange(end)
+// Range function returns an array to be used with for _, i := range ComplexNonInclusiveRange(start, end, step)
 func ComplexNonInclusiveRange(start int, end int, step int) []int {
 	var result []int
 	for i := start; i < end; i += step {
