@@ -42,3 +42,14 @@ func PipeTyped[VT any](
 	}
 	return result
 }
+
+// Pipeline function
+// This variant is fully typed for return type and initial argument and uses functions fun(any) -> any
+// There in these functions you can use EnsureType for correcting types of arguments
+func PipeTypedAny[IAT any, RT any](initialArgument IAT, functions ...func(any) any) RT {
+	var result = ToAny(initialArgument)
+	for _, function := range functions {
+		result = function(result)
+    }
+    return EnsureType[RT](result)
+}
