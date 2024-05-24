@@ -1,5 +1,7 @@
 package base
 
+import "github.com/patrykjadamczyk/go-utils/math"
+
 // Any function
 type AnyFunc = func(any) any
 
@@ -20,6 +22,29 @@ type AnyResult = Result[any]
 
 // Any Nullable
 type AnyNullable = Nullable[any]
+
+// Rust like types
+
+type F32 float32
+type F64 float64
+type I8 int8
+type I16 int16
+type I32 int32
+type I64 int64
+type Str string
+type U8 uint8
+type U16 uint16
+type U32 uint32
+type U64 uint64
+
+// Vectors
+
+type Vector2I math.Vector2[int]
+type Vector3I math.Vector3[int]
+type Vector4I math.Vector4[int]
+type Vector2F math.Vector2[float64]
+type Vector3F math.Vector3[float64]
+type Vector4F math.Vector4[float64]
 
 // Ensure that value is of type T or panic
 func EnsureType[T any](value any) T {
