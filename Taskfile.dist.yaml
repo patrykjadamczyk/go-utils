@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+---
+version: '3'
+
+tasks:
+    test:
+        desc: "Run tests"
+        cmds:
+            - go install gotest.tools/gotestsum@latest
+            - gotestsum -- -v -count=1 ./...
+            - gotestsum --watch  -- -v -count=1 ./...
