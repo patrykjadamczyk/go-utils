@@ -10,12 +10,24 @@ type NumericType interface {
 	~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint
 }
 
+type SignedNumericType interface {
+	~int8 | ~int16 | ~int32 | ~int64 | ~float32 | ~float64 | ~int
+}
+
 type AnyFloat interface {
 	~float32 | ~float64
 }
 
 type AnyInt interface {
 	~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~int | ~uint
+}
+
+type AnySint interface {
+	~int8 | ~int16 | ~int32 | ~int64 | ~int | ~uint
+}
+
+type AnyUint interface {
+	~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uint
 }
 
 // GetMaxForType
