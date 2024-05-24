@@ -2,12 +2,10 @@ package math
 
 import (
 	"fmt"
-
-	. "github.com/patrykjadamczyk/go-utils/base"
 )
 
 // Vector4D
-type Vector4[T NumericType] struct {
+type Vector4[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint] struct {
 	X int
 	Y int
 	Z int

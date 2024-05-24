@@ -1,13 +1,13 @@
 package math
 
 import (
-	. "github.com/patrykjadamczyk/go-utils/base"
 	"golang.org/x/exp/constraints"
 )
 
 func Max[T constraints.Ordered](items ...T) T {
 	if len(items) == 0 {
-		return Null[T]().ValueOrZero()
+		var v T
+		return v
 	}
 
 	max := items[0]
@@ -23,7 +23,8 @@ func Max[T constraints.Ordered](items ...T) T {
 
 func Min[T constraints.Ordered](items ...T) T {
 	if len(items) == 0 {
-		return Null[T]().ValueOrZero()
+		var v T
+		return v
 	}
 
 	min := items[0]
@@ -37,7 +38,7 @@ func Min[T constraints.Ordered](items ...T) T {
 	return min
 }
 
-func Abs[T SignedNumericType](n T) T {
+func Abs[T ~int8 | ~int16 | ~int32 | ~int64 | ~float32 | ~float64 | ~int](n T) T {
 	if n >= 0 {
 		return n
 	}
