@@ -37,6 +37,30 @@ type U16 uint16
 type U32 uint32
 type U64 uint64
 
+// Capitalized Types
+
+type Float32 float32
+type Float64 float64
+type Float float64
+
+type Int8 int8
+type Int16 int16
+type Int32 int32
+type Int64 int64
+type Int int
+
+type Uint8 uint8
+type Uint16 uint16
+type Uint32 uint32
+type Uint64 uint64
+type Uint uint
+
+type Sint8 int8
+type Sint16 int16
+type Sint32 int32
+type Sint64 int64
+type Sint int
+
 // Vectors
 
 type Vector2I math.Vector2[int]
