@@ -23,6 +23,14 @@ func (mrv MutableRefValue[T]) Get() T {
 	return mrv.Data[0]
 }
 
+// Get pointer to value
+func (mrv *MutableRefValue[T]) GetPtr() *T {
+	if mrv.Data == nil || len(mrv.Data) == 0 {
+		return nil
+	}
+	return &mrv.Data[0]
+}
+
 // MakeRefValue makes mutable reference to specified value still acting completely like value
 func MutRefValue[T any](value T) MutableRefValue[T] {
 	data := make([]T, 0)
