@@ -59,6 +59,11 @@ func ToPtr[T any](value T) *T {
 	return &value
 }
 
+// Return a value from pointer
+func ToValue[T any](value *T) T {
+    return *value
+}
+
 // IsNil checks if a value is nil or if it's a reference type with a nil underlying value.
 func IsNil(x any) bool {
 	defer func() { recover() }() // nolint:errcheck
