@@ -5,9 +5,9 @@ import (
 )
 
 // Vector2D
-type Vector2[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint] struct {
-	X int
-	Y int
+type Vector2[T VectorUnderlyingType] struct {
+	X T
+	Y T
 }
 
 // Add other vector to current one
@@ -36,14 +36,14 @@ func (vec *Vector2[T]) Divide(other Vector2[T]) {
 
 // AddWithinBounds Add update vector to current one within bounds of bounds vector
 func (vec *Vector2[T]) AddWithinBounds(bounds Vector2[T], update Vector2[T]) {
-	vec.X = (vec.X + update.X) % bounds.X
-	vec.Y = (vec.Y + update.Y) % bounds.Y
+	vec.X = Mod((vec.X + update.X), bounds.X)
+	vec.Y = Mod((vec.Y + update.Y), bounds.Y)
 }
 
 // AddWithinBoundsAndForceAbsolute Add update vector to current one within bounds of bounds vector and force value of vector to be positive
 func (vec *Vector2[T]) AddWithinBoundsAndForceAbsolute(bounds Vector2[T], update Vector2[T]) {
-	vec.X = Abs((vec.X + update.X) % bounds.X)
-	vec.Y = Abs((vec.Y + update.Y) % bounds.Y)
+	vec.X = Abs(Mod((vec.X + update.X), bounds.X))
+	vec.Y = Abs(Mod((vec.Y + update.Y), bounds.Y))
 }
 
 // Equality check with other vector
@@ -57,11 +57,21 @@ func (vec Vector2[T]) ToString() string {
 }
 
 // Zero Vector2D
-func ZeroVector2[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector2[T] {
+func ZeroVector2[T VectorUnderlyingType]() Vector2[T] {
 	return Vector2[T]{X: 0, Y: 0}
 }
 
 // One Vector2D
-func OneVector2[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector2[T] {
+func OneVector2[T VectorUnderlyingType]() Vector2[T] {
     return Vector2[T]{X: 1, Y: 1}
+}
+
+// Make Vector2D
+func MakeVector2[T VectorUnderlyingType](x, y T) Vector2[T] {
+	return Vector2[T]{X: x, Y: y}
+}
+
+// Make Same Vector2D where all values of the vector are the same number specified
+func SameVector2[T VectorUnderlyingType](number T) Vector2[T] {
+	return MakeVector2(number, number)
 }

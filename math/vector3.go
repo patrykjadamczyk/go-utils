@@ -5,10 +5,10 @@ import (
 )
 
 // Vector3D
-type Vector3[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint] struct {
-	X int
-	Y int
-	Z int
+type Vector3[T VectorUnderlyingType] struct {
+	X T
+	Y T
+	Z T
 }
 
 // Add other vector to current one
@@ -41,16 +41,16 @@ func (vec *Vector3[T]) Divide(other Vector3[T]) {
 
 // AddWithinBounds Add update vector to current one within bounds of bounds vector
 func (vec *Vector3[T]) AddWithinBounds(bounds Vector3[T], update Vector3[T]) {
-	vec.X = (vec.X + update.X) % bounds.X
-	vec.Y = (vec.Y + update.Y) % bounds.Y
-	vec.Z = (vec.Z + update.Z) % bounds.Z
+	vec.X = Mod((vec.X + update.X), bounds.X)
+	vec.Y = Mod((vec.Y + update.Y), bounds.Y)
+	vec.Z = Mod((vec.Z + update.Z), bounds.Z)
 }
 
 // AddWithinBoundsAndForceAbsolute Add update vector to current one within bounds of bounds vector and force value of vector to be positive
 func (vec *Vector3[T]) AddWithinBoundsAndForceAbsolute(bounds Vector3[T], update Vector3[T]) {
-	vec.X = Abs((vec.X + update.X) % bounds.X)
-	vec.Y = Abs((vec.Y + update.Y) % bounds.Y)
-	vec.Z = Abs((vec.Z + update.Z) % bounds.Z)
+	vec.X = Abs(Mod((vec.X + update.X), bounds.X))
+	vec.Y = Abs(Mod((vec.Y + update.Y), bounds.Y))
+	vec.Z = Abs(Mod((vec.Z + update.Z), bounds.Z))
 }
 
 // Equality check with other vector
@@ -64,11 +64,21 @@ func (vec Vector3[T]) ToString() string {
 }
 
 // Zero Vector3D
-func ZeroVector3[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector3[T] {
+func ZeroVector3[T VectorUnderlyingType]() Vector3[T] {
 	return Vector3[T]{X: 0, Y: 0, Z: 0}
 }
 
 // One Vector3D
-func OneVector3[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector3[T] {
+func OneVector3[T VectorUnderlyingType]() Vector3[T] {
 	return Vector3[T]{X: 1, Y: 1, Z: 1}
+}
+
+// Make Vector3D
+func MakeVector3[T VectorUnderlyingType](x, y, z T) Vector3[T] {
+	return Vector3[T]{X: x, Y: y, Z: z}
+}
+
+// Make Same Vector3D where all values of the vector are the same number specified
+func SameVector3[T VectorUnderlyingType](number T) Vector3[T] {
+	return MakeVector3(number, number, number)
 }
