@@ -139,6 +139,11 @@ func (vec *Vector3[T]) FromString(v string) {
 	vec.Z = z
 }
 
+// ContainsNaN checks if vector contains NaN
+func (vec Vector3[T]) ContainsNaN() bool {
+	return vec.X != vec.X || vec.Y != vec.Y || vec.Z != vec.Z
+}
+
 // Zero Vector3D
 func ZeroVector3[T VectorUnderlyingType]() Vector3[T] {
 	return Vector3[T]{X: 0, Y: 0, Z: 0}

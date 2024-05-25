@@ -149,6 +149,11 @@ func (vec *Vector4[T]) FromString(v string) {
 	vec.W = w
 }
 
+// ContainsNaN checks if vector contains NaN
+func (vec Vector4[T]) ContainsNaN() bool {
+	return vec.X != vec.X || vec.Y != vec.Y || vec.Z != vec.Z || vec.W != vec.W
+}
+
 // Zero Vector2D
 func ZeroVector4[T VectorUnderlyingType]() Vector4[T] {
 	return Vector4[T]{X: 0, Y: 0, Z: 0, W: 0}
