@@ -62,3 +62,13 @@ func (vec *Vector3[T]) Equal(other Vector3[T]) bool {
 func (vec Vector3[T]) ToString() string {
 	return fmt.Sprintf("Vector3(%v,%v,%v)", vec.X, vec.Y, vec.Z)
 }
+
+// Zero Vector3D
+func ZeroVector3[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector3[T] {
+	return Vector3[T]{X: 0, Y: 0, Z: 0}
+}
+
+// One Vector3D
+func OneVector3[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector3[T] {
+	return Vector3[T]{X: 1, Y: 1, Z: 1}
+}

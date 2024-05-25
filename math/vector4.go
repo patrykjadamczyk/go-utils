@@ -69,3 +69,13 @@ func (vec *Vector4[T]) Equal(other Vector4[T]) bool {
 func (vec Vector4[T]) ToString() string {
 	return fmt.Sprintf("Vector4(%v,%v,%v,%v)", vec.X, vec.Y, vec.Z, vec.W)
 }
+
+// Zero Vector2D
+func ZeroVector4[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector4[T] {
+	return Vector4[T]{X: 0, Y: 0, Z: 0, W: 0}
+}
+
+// One Vector2D
+func OneVector4[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector4[T] {
+	return Vector4[T]{X: 1, Y: 1, Z: 1, W: 1}
+}

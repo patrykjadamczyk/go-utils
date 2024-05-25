@@ -55,3 +55,13 @@ func (vec *Vector2[T]) Equal(other Vector2[T]) bool {
 func (vec Vector2[T]) ToString() string {
 	return fmt.Sprintf("Vector2(%v,%v)", vec.X, vec.Y)
 }
+
+// Zero Vector2D
+func ZeroVector2[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector2[T] {
+	return Vector2[T]{X: 0, Y: 0}
+}
+
+// One Vector2D
+func OneVector2[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint]() Vector2[T] {
+    return Vector2[T]{X: 1, Y: 1}
+}
