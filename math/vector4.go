@@ -65,6 +65,15 @@ func (vec *Vector4[T]) Equal(other Vector4[T]) bool {
 	return vec.X == other.X && vec.Y == other.Y && vec.Z == other.Z && vec.W == other.W
 }
 
+// EqualWithinTolerance check if current vector is within tolerance vector of other vector
+func (vec *Vector4[T]) EqualWithinTolerance(other Vector4[T], tolerance Vector4[T]) bool {
+	ret := vec.X >= other.X-tolerance.X && vec.X <= other.X+tolerance.X
+	ret = ret && vec.Y >= other.Y-tolerance.Y && vec.Y <= other.Y+tolerance.Y
+	ret = ret && vec.Z >= other.Z-tolerance.Z && vec.Z <= other.Z+tolerance.Z
+	ret = ret && vec.W >= other.W-tolerance.W && vec.W <= other.W+tolerance.W
+	return ret
+}
+
 // String representation of vector
 func (vec Vector4[T]) ToString() string {
 	return fmt.Sprintf("Vector4(%v,%v,%v,%v)", vec.X, vec.Y, vec.Z, vec.W)

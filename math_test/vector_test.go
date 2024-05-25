@@ -51,6 +51,12 @@ func TestVector2(t *testing.T) {
 			vec2.ToString(),
 		)
 	}
+	if !vec2.EqualWithinTolerance(ZeroVector2[int](), OneVector2[int]()) {
+		t.Error(
+			"vec2 should be Vector2(1,1) so Vector2(0,0) should be within Vector2(1,1) tolerance but vec2 is ",
+			vec2.ToString(),
+		)
+	}
 }
 
 func TestVector3(t *testing.T) {
@@ -98,6 +104,12 @@ func TestVector3(t *testing.T) {
 			vec3.ToString(),
 		)
 	}
+	if !vec3.EqualWithinTolerance(ZeroVector3[int](), OneVector3[int]()) {
+		t.Error(
+			"vec3 should be Vector3(1,1,1) so Vector3(0,0,0) should be within Vector3(1,1,1) tolerance but vec3 is ",
+			vec3.ToString(),
+		)
+	}
 }
 
 func TestVector4(t *testing.T) {
@@ -142,6 +154,12 @@ func TestVector4(t *testing.T) {
 	if !vec4.Equal(OneVector4[int]()) {
 		t.Error(
 			"vec4 should be Vector4(-1, -1, -1, -1) + Vector4(-2, -2, -2, -2) => in bounds of Vector4(2, 2, 2, 2) => Abs() = Vector4(1, 1, 1, 1) and is",
+			vec4.ToString(),
+		)
+	}
+	if !vec4.EqualWithinTolerance(ZeroVector4[int](), OneVector4[int]()) {
+		t.Error(
+			"vec4 should be Vector4(1,1,1,1) so Vector4(0,0,0,0) should be within Vector4(1,1,1,1) tolerance but vec4 is ",
 			vec4.ToString(),
 		)
 	}

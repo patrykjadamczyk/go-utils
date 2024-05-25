@@ -51,6 +51,13 @@ func (vec *Vector2[T]) Equal(other Vector2[T]) bool {
 	return vec.X == other.X && vec.Y == other.Y
 }
 
+// EqualWithinTolerance check if current vector is within tolerance vector of other vector
+func (vec *Vector2[T]) EqualWithinTolerance(other Vector2[T], tolerance Vector2[T]) bool {
+	ret := vec.X >= other.X-tolerance.X && vec.X <= other.X+tolerance.X
+	ret = ret && vec.Y >= other.Y-tolerance.Y && vec.Y <= other.Y+tolerance.Y
+	return ret
+}
+
 // String representation of vector
 func (vec Vector2[T]) ToString() string {
 	return fmt.Sprintf("Vector2(%v,%v)", vec.X, vec.Y)
