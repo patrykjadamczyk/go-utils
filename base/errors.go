@@ -2,6 +2,8 @@ package base
 
 import (
 	err "errors"
+	"fmt"
+
 	"github.com/patrykjadamczyk/go-utils/errors"
 )
 
@@ -92,8 +94,40 @@ func PanicToError[T any](f func() T) Result[T] {
 			}
 		}()
 		fr := f()
-		r = Ok[T](fr)
+		r = Ok(fr)
 	}
 	pf()
 	return r
+}
+
+// Deprecation Functions
+
+// DeprecatedPanic this functions panics with DeprecatedError
+func DeprecatedPanic() {
+	panic(ExpandError(NewError("DeprecatedError: Deprecated!")))
+}
+
+// DeprecatedPanicMessage this functions panics with DeprecatedError adding custom message
+func DeprecatedPanicMessage(msg any) {
+	panic(ExpandError(NewError(fmt.Sprintf("DeprecatedError: %v", msg))))
+}
+
+// DeprecatedPanicVersionMessage this functions panics with DeprecatedError adding custom message and specifying in which version it was deprecated
+func DeprecatedPanicVersionMessage(version any, msg any) {
+	panic(ExpandError(NewError(fmt.Sprintf("DeprecatedError: Deprecated in %v: %v", version, msg))))
+}
+
+// DeprecatedError this functions returns DeprecatedError
+func DeprecatedError() error {
+	return ExpandError(NewError("DeprecatedError: Deprecated!"))
+}
+
+// DeprecatedErrorMessage this functions returns DeprecatedError adding custom message
+func DeprecatedErrorMessage(msg any) error {
+	return ExpandError(NewError(fmt.Sprintf("DeprecatedError: %v", msg)))
+}
+
+// DeprecatedErrorVersionMessage this functions returns DeprecatedError adding custom message and specifying in which version it was deprecated
+func DeprecatedErrorVersionMessage(version any, msg any) error {
+	return ExpandError(NewError(fmt.Sprintf("DeprecatedError: Deprecated in %v: %v", version, msg)))
 }
