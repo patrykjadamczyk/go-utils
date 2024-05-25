@@ -9,7 +9,7 @@ func Sum[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint
 }
 
 func Product[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint](values ...T) T {
-	var product T = 0
+	var product T = 1
 	for _, value := range values {
 		product *= value
     }
