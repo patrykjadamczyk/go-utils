@@ -2,6 +2,8 @@ package math
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 )
 
 // Vector4D
@@ -77,6 +79,74 @@ func (vec *Vector4[T]) EqualWithinTolerance(other Vector4[T], tolerance Vector4[
 // String representation of vector
 func (vec Vector4[T]) ToString() string {
 	return fmt.Sprintf("Vector4(%v,%v,%v,%v)", vec.X, vec.Y, vec.Z, vec.W)
+}
+
+// String representation of vector
+func (vec Vector4[T]) String() string {
+	return vec.ToString()
+}
+
+// Change values of current vector to values from string representation
+func (vec *Vector4[T]) FromString(v string) {
+	vs := strings.TrimLeft(v, "Vector4")
+	vs = strings.TrimLeft(vs, "(")
+	vs = strings.TrimRight(vs, ")")
+	vsa := strings.Split(vs, ",")
+	var vsat = make([]any, 0)
+	var _typeswitch T
+	typeswitch := any(_typeswitch)
+	for _, vsi := range vsa {
+		switch typeswitch.(type) {
+		case int:
+			a, _ := strconv.ParseInt(vsi, 10, 64)
+			vsat = append(vsat, int(a))
+		case int8:
+			a, _ := strconv.ParseInt(vsi, 10, 8)
+			vsat = append(vsat, int8(a))
+		case int16:
+			a, _ := strconv.ParseInt(vsi, 10, 16)
+			vsat = append(vsat, int16(a))
+		case int32:
+			a, _ := strconv.ParseInt(vsi, 10, 32)
+			vsat = append(vsat, int32(a))
+		case int64:
+			a, _ := strconv.ParseInt(vsi, 10, 64)
+			vsat = append(vsat, int64(a))
+		case uint:
+			a, _ := strconv.ParseUint(vsi, 10, 64)
+			vsat = append(vsat, uint(a))
+		case uint8:
+			a, _ := strconv.ParseUint(vsi, 10, 8)
+			vsat = append(vsat, uint8(a))
+		case uint16:
+			a, _ := strconv.ParseUint(vsi, 10, 16)
+			vsat = append(vsat, uint16(a))
+		case uint32:
+			a, _ := strconv.ParseUint(vsi, 10, 32)
+			vsat = append(vsat, uint32(a))
+		case uint64:
+			a, _ := strconv.ParseUint(vsi, 10, 64)
+			vsat = append(vsat, uint64(a))
+		case float32:
+			a, _ := strconv.ParseFloat(vsi, 32)
+			vsat = append(vsat, float32(a))
+		case float64:
+			a, _ := strconv.ParseFloat(vsi, 64)
+			vsat = append(vsat, float64(a))
+		}
+	}
+
+	if len(vsat) != 4 {
+		panic("AssertionError: Vector string malformed")
+	}
+	x := ensureType[T](vsat[0])
+	y := ensureType[T](vsat[1])
+	z := ensureType[T](vsat[2])
+	w := ensureType[T](vsat[3])
+	vec.X = x
+	vec.Y = y
+	vec.Z = z
+	vec.W = w
 }
 
 // Zero Vector2D

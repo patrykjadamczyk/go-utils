@@ -57,6 +57,16 @@ func TestVector2(t *testing.T) {
 			vec2.ToString(),
 		)
 	}
+	v2 := ZeroVector2[int]()
+	v2.FromString(vec2.ToString())
+	if !v2.Equal(vec2) {
+		t.Error(
+			"v2 should be vec2 if it's made from string of vec2, vec2 is",
+			vec2.ToString(),
+			"v2 is",
+			v2.ToString(),
+		)
+	}
 }
 
 func TestVector3(t *testing.T) {
@@ -110,6 +120,16 @@ func TestVector3(t *testing.T) {
 			vec3.ToString(),
 		)
 	}
+	v3 := ZeroVector3[int]()
+	v3.FromString(vec3.ToString())
+	if !v3.Equal(vec3) {
+		t.Error(
+			"v3 should be vec3 if it's made from string of vec3, vec3 is",
+			vec3.ToString(),
+			"v3 is",
+			v3.ToString(),
+		)
+	}
 }
 
 func TestVector4(t *testing.T) {
@@ -161,6 +181,16 @@ func TestVector4(t *testing.T) {
 		t.Error(
 			"vec4 should be Vector4(1,1,1,1) so Vector4(0,0,0,0) should be within Vector4(1,1,1,1) tolerance but vec4 is ",
 			vec4.ToString(),
+		)
+	}
+	v4 := ZeroVector4[int]()
+	v4.FromString(vec4.ToString())
+	if !v4.Equal(vec4) {
+		t.Error(
+			"v4 should be vec4 if it's made from string of vec4, vec4 is",
+			vec4.ToString(),
+			"v4 is",
+			v4.ToString(),
 		)
 	}
 }
