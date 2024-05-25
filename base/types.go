@@ -1,7 +1,5 @@
 package base
 
-import "github.com/patrykjadamczyk/go-utils/math"
-
 // Any function
 type AnyFunc = func(any) any
 
@@ -61,14 +59,6 @@ type Sint32 int32
 type Sint64 int64
 type Sint int
 
-// Vectors
-
-type Vector2I math.Vector2[int]
-type Vector3I math.Vector3[int]
-type Vector4I math.Vector4[int]
-type Vector2F math.Vector2[float64]
-type Vector3F math.Vector3[float64]
-type Vector4F math.Vector4[float64]
 
 // Ensure that value is of type T or panic
 func EnsureType[T any](value any) T {

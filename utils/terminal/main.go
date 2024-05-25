@@ -4,17 +4,17 @@ import (
 	"os"
 
 	"golang.org/x/term"
-	. "github.com/patrykjadamczyk/go-utils/base"
+	"github.com/patrykjadamczyk/go-utils/math"
 )
 
 // Get Terminal Size
-func GetTerminalSize() Vector2I {
+func GetTerminalSize() math.Vector2[int] {
 	fd := int(os.Stdout.Fd())
 	width, height, err := term.GetSize(fd)
 	if err != nil {
-		return Vector2I{X: 80, Y: 24}
+		return math.Vector2[int]{X: 80, Y: 24}
 	}
-	return Vector2I{X: width, Y: height}
+	return math.Vector2[int]{X: width, Y: height}
 }
 
 // Calculate vw unit for terminal
