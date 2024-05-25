@@ -134,6 +134,13 @@ func (vec Vector2[T]) ContainsNaN() bool {
 	return vec.X != vec.X || vec.Y != vec.Y
 }
 
+// ToTuple get tuple of cordinates of vector
+func (vec Vector2[T]) ToTuple() (x, y T) {
+	x = vec.X
+	y = vec.Y
+	return
+}
+
 // Zero Vector2D
 func ZeroVector2[T VectorUnderlyingType]() Vector2[T] {
 	return Vector2[T]{X: 0, Y: 0}

@@ -144,6 +144,14 @@ func (vec Vector3[T]) ContainsNaN() bool {
 	return vec.X != vec.X || vec.Y != vec.Y || vec.Z != vec.Z
 }
 
+// ToTuple get tuple of cordinates of vector
+func (vec Vector3[T]) ToTuple() (x, y, z T) {
+	x = vec.X
+	y = vec.Y
+	z = vec.Z
+	return
+}
+
 // Zero Vector3D
 func ZeroVector3[T VectorUnderlyingType]() Vector3[T] {
 	return Vector3[T]{X: 0, Y: 0, Z: 0}
