@@ -18,3 +18,48 @@ func TestNaN(t *testing.T) {
 		t.Error("Float64 NaN is not NaN according to math.IsNaN")
 	}
 }
+
+func TestAbs(t *testing.T) {
+    if Abs(1) != 1 {
+        t.Error("int Abs(1) != 1")
+    }
+	if Abs[int8](1) != 1 {
+        t.Error("int8 Abs(1) != 1")
+    }
+    if Abs[int16](1) != 1 {
+        t.Error("int16 Abs(1) != 1")
+    }
+    if Abs[int32](1) != 1 {
+        t.Error("int32 Abs(1) != 1")
+    }
+    if Abs[int64](1) != 1 {
+        t.Error("int64 Abs(1) != 1")
+    }
+    if Abs[float32](1) != 1 {
+        t.Error("float32 Abs(1) != 1")
+    }
+    if Abs[float64](1) != 1 {
+        t.Error("float64 Abs(1) != 1")
+    }
+    if Abs(-1) != 1 {
+        t.Error("int Abs(-1) != 1")
+    }
+	if Abs[int8](-1) != 1 {
+        t.Error("int8 Abs(-1) != 1")
+    }
+    if Abs[int16](-1) != 1 {
+        t.Error("int16 Abs(-1) != 1")
+    }
+    if Abs[int32](-1) != 1 {
+        t.Error("int32 Abs(-1) != 1")
+    }
+    if Abs[int64](-1) != 1 {
+        t.Error("int64 Abs(-1) != 1")
+    }
+    if Abs[float32](-1) != 1 {
+        t.Error("float32 Abs(-1) != 1")
+    }
+    if Abs[float64](-1) != 1 {
+        t.Error("float64 Abs(-1) != 1")
+    }
+}
