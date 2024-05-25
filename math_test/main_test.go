@@ -63,3 +63,18 @@ func TestAbs(t *testing.T) {
         t.Error("float64 Abs(-1) != 1")
     }
 }
+
+func TestMinMax(t *testing.T) {
+	if Min(12, 245, 90) != 12 {
+		t.Error("int Min(12, 245, 90) != 12")
+	}
+	if Min(12, 245, 90, -21) != -21 {
+		t.Error("int Min(12, 245, 90, -21) != -21")
+	}
+	if Max(12, 245, 90) != 245 {
+		t.Error("int Max(12, 245, 90) != 245")
+	}
+	if Max(12, 245, 90, -21) != 245 {
+		t.Error("int Max(12, 245, 90, -21) != 245")
+	}
+}
