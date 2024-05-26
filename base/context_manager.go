@@ -1,6 +1,6 @@
 package base
 
-// Context Manager Interface with methods on entering and exiting context
+// ContextManagerInterface with methods on entering and exiting context
 // This interface could be on pointer type or struct itself based if it have to manipulate data on struct
 type ContextManagerInterface interface {
 	// Enter into Context
@@ -9,7 +9,7 @@ type ContextManagerInterface interface {
 	Exit()
 }
 
-// Context Manager Interface with methods on entering and exiting context
+// GoContextManagerInterface with methods on entering and exiting context
 // This interface is based on close method that is made in some go objects for use in defer
 // This interface could be on pointer type or struct itself based if it have to manipulate data on struct
 type GoContextManagerInterface interface {
