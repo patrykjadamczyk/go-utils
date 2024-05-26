@@ -89,6 +89,22 @@ func Cast[T any](value any) T {
 	return EnsureType[T](value)
 }
 
+// Cast all provided values to type T
+// Returns result slice of type T and bool if it was successful for if condition
+func CastAll[T any](v ...any) (ret []T, casted bool) {
+	ret = make([]T, 0)
+	for _, vv := range v {
+		if val, ok := vv.(T); ok {
+			ret = append(ret, val)
+			casted = true
+		} else {
+			ret = make([]T, 0)
+			return ret, false
+		}
+	}
+	return
+}
+
 // Cast function to AnyFunc
 func ToAnyFunc[AT any, RT any](f func(AT) RT) AnyFunc {
     return func(v any) any {
