@@ -65,6 +65,12 @@ func getMaxForType(value any) any {
 		return uint32(math.MaxUint32)
 	case uint64:
 		return uint64(math.MaxUint64)
+	case uintptr:
+		return uintptr(math.MaxUint64)
+	case complex64:
+		return complex64(math.MaxFloat32 + (math.MaxFloat32 * 1i))
+	case complex128:
+		return complex(math.MaxFloat64, math.MaxFloat64)
 	default:
 		panic(fmt.Sprintf("Invalid Type %s", reflect.TypeOf(value).Name()))
 	}
@@ -105,6 +111,12 @@ func getMinForType(value any) any {
 		return uint32(0)
 	case uint64:
 		return uint64(0)
+	case uintptr:
+		return uintptr(0)
+	case complex64:
+		return complex64((-1 * math.MaxFloat32) + (math.MaxFloat32 * -1i))
+	case complex128:
+		return complex(-1 * math.MaxFloat64, -1 * math.MaxFloat64)
 	default:
 		panic(fmt.Sprintf("Invalid Type %s", reflect.TypeOf(value).Name()))
 	}
