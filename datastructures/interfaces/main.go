@@ -4,6 +4,14 @@ type IGet[T any] interface {
 	Get() T
 }
 
+type IGetAny interface {
+	Get() any
+}
+
+type IGetAnyFunc interface {
+	GetAny() any
+}
+
 type IAdd[T any] interface {
 	Add(T) T
 }
