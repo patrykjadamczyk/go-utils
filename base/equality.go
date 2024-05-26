@@ -178,6 +178,12 @@ func UniversalEquals(v1 any, v2 any) Result[bool] {
 	if v2i, ok := v2.(interfaces.IEqualsAny); ok {
 		return Ok(v2i.Equals(v1))
 	}
+	if v1i, ok := v1.(interfaces.IEqualsAnyFunc); ok {
+		return Ok(v1i.EqualsAny(v2))
+	}
+	if v2i, ok := v2.(interfaces.IEqualsAnyFunc); ok {
+		return Ok(v2i.EqualsAny(v1))
+	}
 	// Check for all basic go types
 	// comparable types
 	switch v1t := v1.(type) {
