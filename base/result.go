@@ -82,6 +82,11 @@ func (r Result[T]) GoString() string {
 	)
 }
 
+// Get Value
+func (r Result[T]) GetValue() T {
+	return r.DataValue
+}
+
 // Implementation of ErrorableGenericResultInterface
 
 // Check if Result has error
