@@ -1,21 +1,21 @@
 package interfaces
 
 type ISet[T any] interface {
-	Set() T
+	Set(T)
 }
 
 type ISetAny interface {
-	Set() any
+	Set(any)
 }
 
 type ISetAnyFunc interface {
-	SetAny() any
+	SetAny(any)
 }
 
 type ISetValue[T any] interface {
-	SetValue() T
+	SetValue(T)
 }
 
 type ISetValueAny interface {
-	SetValue() any
+	SetValue(any)
 }
