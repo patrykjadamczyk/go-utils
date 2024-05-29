@@ -7,11 +7,15 @@ import (
 )
 
 type NumericType interface {
-	~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint
+	~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~float32 | ~float64 | ~int | ~uint | complex64 | complex128
 }
 
 type SignedNumericType interface {
 	~int8 | ~int16 | ~int32 | ~int64 | ~float32 | ~float64 | ~int
+}
+
+type AnyComplex interface {
+	~complex64 | ~complex128
 }
 
 type AnyFloat interface {
