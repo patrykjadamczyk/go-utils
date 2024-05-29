@@ -7,21 +7,23 @@ import (
 )
 
 func (w *Wrapper[T]) ToArray() []T {
-	val := reflect.ValueOf(w.Value)
+	wv := w.Get()
+	val := reflect.ValueOf(wv)
 	if val.Kind() == reflect.Slice || val.Kind() == reflect.Array {
-		return EnsureType[[]T](w.Value)
+		return EnsureType[[]T](wv)
 	}
-	return []T{w.Value}
+	return []T{wv}
 }
 
 func (w *Wrapper[T]) ToArrayAny() (res []any) {
-	val := reflect.ValueOf(w.Value)
+	wv := w.Get()
+	val := reflect.ValueOf(wv)
 	if val.Kind() == reflect.Slice || val.Kind() == reflect.Array {
 		res = make([]any, 0)
-		for _, item := range EnsureType[[]T](w.Value) {
+		for _, item := range EnsureType[[]T](wv) {
             res = append(res, item)
         }
 		return
 	}
-	return []any{w.Value}
+	return []any{wv}
 }

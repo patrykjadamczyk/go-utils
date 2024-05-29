@@ -5,9 +5,9 @@ func (w *Wrapper[T]) Get() T {
 }
 
 func (w *Wrapper[T]) GetAny() any {
-	return w.Value
+	return w.Get()
 }
 
 func (w *Wrapper[T]) GetValue() T {
-	return w.Value
+	return w.Get()
 }

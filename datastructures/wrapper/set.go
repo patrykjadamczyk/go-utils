@@ -9,9 +9,9 @@ func (w *Wrapper[T]) Set(v T) {
 }
 
 func (w *Wrapper[T]) SetAny(v any) {
-	w.Value = EnsureType[T](v)
+	w.Set(EnsureType[T](v))
 }
 
 func (w *Wrapper[T]) SetValue(v T) {
-	w.Value = v
+	w.Set(v)
 }

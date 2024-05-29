@@ -19,7 +19,8 @@ func (w *Wrapper[T]) String() string {
 	if v, ok := any(w.Value).(interfaces.IToString); ok {
 		return v.ToString()
 	}
-    return fmt.Sprintf("%T(%v)", w.Value, w.Value)
+	wv := w.Get()
+    return fmt.Sprintf("%T(%v)", wv, wv)
 }
 
 func (w *Wrapper[T]) ToString() string {

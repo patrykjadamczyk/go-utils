@@ -5,7 +5,7 @@ import (
 )
 
 func (w *Wrapper[T]) Len() int {
-	return UniversalLen(w.Value)
+	return UniversalLen(w.Get())
 }
 
 func (w *Wrapper[T]) Contains(v T) bool {
