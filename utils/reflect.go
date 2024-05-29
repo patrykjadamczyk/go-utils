@@ -69,3 +69,13 @@ func GetZeroReflectionValue[T any]() reflect.Value {
 	var temp T
 	return reflect.Zero(reflect.TypeOf(temp))
 }
+
+// Get Type Name using any
+func GetTypeNameAny(v any) string {
+	return GetTypeName(v)
+}
+
+// Get Type Name
+func GetTypeName[T any](v T) string {
+	return reflect.TypeOf(v).String()
+}
