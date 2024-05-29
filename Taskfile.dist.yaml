@@ -4,12 +4,37 @@ version: '3'
 
 tasks:
     test:
-        desc: "Run tests"
+        desc: "Run tests and watch files for changes"
         cmds:
             - go install gotest.tools/gotestsum@latest
             - gotestsum -- -v -count=1 ./...
             - gotestsum --watch  -- -v -count=1 ./...
+    run-test:
+        desc: "Run tests once"
+        cmds:
+            - go install gotest.tools/gotestsum@latest
+            - gotestsum -- -v -count=1 ./...
     fmt:
         desc: "Format all files"
         cmds:
             - go fmt -x ./...
+    fix:
+        desc: "Fix all files"
+        cmds:
+            - go fix ./...
+    vet:
+        desc: "Analyze all files"
+        cmds:
+            - go vet ./...
+    auto:
+        desc: "Run on change"
+        sources:
+            - ./**/*.go
+        generates:
+            - ./**/*.go
+        watch: true
+        deps:
+            - run-test
+            - fmt
+            - fix
+            - vet
