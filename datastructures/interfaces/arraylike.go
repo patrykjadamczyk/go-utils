@@ -1,15 +1,15 @@
 package interfaces
 
 type ILen[T any] interface {
-    Len() T
+	Len() T
 }
 
 type ILenInt interface {
-    Len() int
+	Len() int
 }
 
 type ILenUint interface {
-    Len() uint
+	Len() uint
 }
 
 type IContains[T any] interface {
@@ -25,73 +25,73 @@ type IContainsAnyFunc interface {
 }
 
 type IInsert[T any] interface {
-    Insert(T) T
+	Insert(T) T
 }
 
 type IInsertAny interface {
-    Insert(any) any
+	Insert(any) any
 }
 
 type IInsertAnyFunc interface {
-    InsertAny(any) any
+	InsertAny(any) any
 }
 
 type IInsertInplace[T any] interface {
-    Insert(T)
+	Insert(T)
 }
 
 type IInsertInplaceAny interface {
-    Insert(any)
+	Insert(any)
 }
 
 type IInsertInplaceAnyFunc interface {
-    InsertAny(any)
+	InsertAny(any)
 }
 
 type IAppend[T any] interface {
-    Append(T) T
+	Append(T) T
 }
 
 type IAppendAny interface {
-    Append(any) any
+	Append(any) any
 }
 
 type IAppendAnyFunc interface {
-    AppendAny(any) any
+	AppendAny(any) any
 }
 
 type IAppendInplace[T any] interface {
-    Append(T)
+	Append(T)
 }
 
 type IAppendInplaceAny interface {
-    Append(any)
+	Append(any)
 }
 
 type IAppendInplaceAnyFunc interface {
-    AppendAny(any)
+	AppendAny(any)
 }
 
 type IPrepend[T any] interface {
-    Prepend(T) T
+	Prepend(T) T
 }
 
 type IPrependAny interface {
-    Prepend(any) any
+	Prepend(any) any
 }
 
 type IPrependAnyFunc interface {
-    PrependAny(any) any
+	PrependAny(any) any
 }
 
 type IPrependInplace[T any] interface {
-    Prepend(T)
+	Prepend(T)
 }
 
 type IPrependInplaceAny interface {
-    Prepend(any)
+	Prepend(any)
 }
 
 type IPrependInplaceAnyFunc interface {
-    PrependAny(any)
+	PrependAny(any)
 }

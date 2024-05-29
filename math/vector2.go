@@ -14,26 +14,26 @@ type Vector2[T VectorUnderlyingType] struct {
 
 // Add other vector to current one
 func (vec *Vector2[T]) Add(other Vector2[T]) {
-    vec.X += other.X
-    vec.Y += other.Y
+	vec.X += other.X
+	vec.Y += other.Y
 }
 
 // Substract other vector from current one
 func (vec *Vector2[T]) Substract(other Vector2[T]) {
-    vec.X -= other.X
-    vec.Y -= other.Y
+	vec.X -= other.X
+	vec.Y -= other.Y
 }
 
 // Multiply other vector with current one
 func (vec *Vector2[T]) Multiply(other Vector2[T]) {
-    vec.X *= other.X
-    vec.Y *= other.Y
+	vec.X *= other.X
+	vec.Y *= other.Y
 }
 
 // Divide current vector by other one
 func (vec *Vector2[T]) Divide(other Vector2[T]) {
-    vec.X /= other.X
-    vec.Y /= other.Y
+	vec.X /= other.X
+	vec.Y /= other.Y
 }
 
 // AddWithinBounds Add update vector to current one within bounds of bounds vector
@@ -148,7 +148,7 @@ func ZeroVector2[T VectorUnderlyingType]() Vector2[T] {
 
 // One Vector2D
 func OneVector2[T VectorUnderlyingType]() Vector2[T] {
-    return Vector2[T]{X: 1, Y: 1}
+	return Vector2[T]{X: 1, Y: 1}
 }
 
 // Make Vector2D

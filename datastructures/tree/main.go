@@ -7,7 +7,7 @@ import (
 // TreeNode is a Tree structure
 // TreeNode contains ID, Data of the node and children
 type TreeNode[IDT any, DT any] struct {
-	ID IDT
+	ID       IDT
 	NodeData DT
 	Children []TreeNode[IDT, DT]
 }
@@ -28,10 +28,10 @@ func (t TreeNode[IDT, DT]) Contains(child TreeNode[IDT, DT]) bool {
 			return true
 		}
 		if c.Contains(child) {
-            return true
-        }
-    }
-    return false
+			return true
+		}
+	}
+	return false
 }
 
 // ContainsID checks if the childID is in the tree of current node
@@ -45,10 +45,10 @@ func (t TreeNode[IDT, DT]) ContainsID(childID IDT) bool {
 			return true
 		}
 		if c.ContainsID(childID) {
-            return true
-        }
-    }
-    return false
+			return true
+		}
+	}
+	return false
 }
 
 // GetChild is a function that gets child by ID from the current tree node

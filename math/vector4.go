@@ -16,34 +16,34 @@ type Vector4[T VectorUnderlyingType] struct {
 
 // Add other vector to current one
 func (vec *Vector4[T]) Add(other Vector4[T]) {
-    vec.X += other.X
-    vec.Y += other.Y
-    vec.Z += other.Z
-    vec.W += other.W
+	vec.X += other.X
+	vec.Y += other.Y
+	vec.Z += other.Z
+	vec.W += other.W
 }
 
 // Substract other vector from current one
 func (vec *Vector4[T]) Substract(other Vector4[T]) {
-    vec.X -= other.X
-    vec.Y -= other.Y
-    vec.Z -= other.Z
-    vec.W -= other.W
+	vec.X -= other.X
+	vec.Y -= other.Y
+	vec.Z -= other.Z
+	vec.W -= other.W
 }
 
 // Multiply other vector with current one
 func (vec *Vector4[T]) Multiply(other Vector4[T]) {
-    vec.X *= other.X
-    vec.Y *= other.Y
-    vec.Z *= other.Z
-    vec.W *= other.W
+	vec.X *= other.X
+	vec.Y *= other.Y
+	vec.Z *= other.Z
+	vec.W *= other.W
 }
 
 // Divide current vector by other one
 func (vec *Vector4[T]) Divide(other Vector4[T]) {
-    vec.X /= other.X
-    vec.Y /= other.Y
-    vec.Z /= other.Z
-    vec.W /= other.W
+	vec.X /= other.X
+	vec.Y /= other.Y
+	vec.Z /= other.Z
+	vec.W /= other.W
 }
 
 // AddWithinBounds Add update vector to current one within bounds of bounds vector

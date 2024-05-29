@@ -1,8 +1,8 @@
-//go:build (netbsd && arm)
+//go:build netbsd && arm
 
 package os
 
 const (
-	OS_GOOS = "netbsd"
+	OS_GOOS   = "netbsd"
 	OS_GOARCH = "arm"
 )

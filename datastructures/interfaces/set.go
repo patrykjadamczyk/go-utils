@@ -17,5 +17,5 @@ type ISetValue[T any] interface {
 }
 
 type ISetValueAny interface {
-    SetValue() any
+	SetValue() any
 }

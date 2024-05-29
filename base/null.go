@@ -4,7 +4,6 @@ import (
 	"github.com/patrykjadamczyk/go-utils/datastructures/interfaces"
 )
 
-
 // UniversalNull is a function that determins current type and returns null value
 //
 // Returns Result type with:

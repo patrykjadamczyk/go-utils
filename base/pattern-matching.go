@@ -94,10 +94,10 @@ func TernaryResult[V any](result Result[V], ifOk V, ifErr V) V {
 func Coalesce[V any](values ...V) V {
 	for _, v := range values {
 		switch any(v).(type) {
-			case ErrorableGenericResultInterface:
-				if !EnsureType[ErrorableGenericResultInterface](v).IsError() {
-					return v
-				}
+		case ErrorableGenericResultInterface:
+			if !EnsureType[ErrorableGenericResultInterface](v).IsError() {
+				return v
+			}
 		default:
 			if !IsNil(v) {
 				return v
@@ -110,14 +110,14 @@ func Coalesce[V any](values ...V) V {
 
 // Map Switch Result Type
 type MapSwitchResult[SV comparable, V any] struct {
-	ValueMap map[SV]func() V
+	ValueMap   map[SV]func() V
 	DefaultMap func() V
 }
 
 // Make Map Switch Statement
 func MapSwitch[SV comparable, V any]() *MapSwitchResult[SV, V] {
 	return &MapSwitchResult[SV, V]{
-		ValueMap:    make(map[SV]func() V),
+		ValueMap: make(map[SV]func() V),
 	}
 }
 

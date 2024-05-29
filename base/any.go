@@ -9,15 +9,15 @@ func Any(v any) AnyType {
 }
 
 func (a AnyType) IsNil() bool {
-    return a.Value == nil
+	return a.Value == nil
 }
 
 func (a AnyType) IsNotNil() bool {
-    return !a.IsNil()
+	return !a.IsNil()
 }
 
 func (a AnyType) AsAny() any {
-    return a.Value
+	return a.Value
 }
 
 func (a AnyType) IsNull() bool {
@@ -32,7 +32,7 @@ func (a AnyType) IsNull() bool {
 }
 
 func (a AnyType) IsNotNull() bool {
-    return !a.IsNull()
+	return !a.IsNull()
 }
 
 func (a AnyType) Get() any {

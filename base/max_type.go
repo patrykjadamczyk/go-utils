@@ -116,7 +116,7 @@ func getMinForType(value any) any {
 	case complex64:
 		return complex64((-1 * math.MaxFloat32) + (math.MaxFloat32 * -1i))
 	case complex128:
-		return complex(-1 * math.MaxFloat64, -1 * math.MaxFloat64)
+		return complex(-1*math.MaxFloat64, -1*math.MaxFloat64)
 	default:
 		panic(fmt.Sprintf("Invalid Type %s", reflect.TypeOf(value).Name()))
 	}

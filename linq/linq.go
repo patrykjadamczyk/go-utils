@@ -328,7 +328,6 @@ func LinqMaxIterable[T constraints.Ordered, TV IIterable[T]](obj TV) T {
 	return max.ValueOrZero()
 }
 
-
 func LinqMin[T constraints.Ordered](obj []T) T {
 	if len(obj) == 0 {
 		return Null[T]().ValueOrZero()
@@ -416,7 +415,7 @@ func LinqSumBy[T any, R constraints.Ordered](obj []T, selector func(T) R) (sum R
 	return sum
 }
 
-func LinqSumByIterable[T any, TV IIterable[T],R constraints.Ordered](obj TV, selector func(T) R) (sum R) {
+func LinqSumByIterable[T any, TV IIterable[T], R constraints.Ordered](obj TV, selector func(T) R) (sum R) {
 	for {
 		item, ok := obj.Next()
 		if !ok {

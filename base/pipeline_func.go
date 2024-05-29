@@ -50,6 +50,6 @@ func PipeTypedAny[IAT any, RT any](initialArgument IAT, functions ...AnyFunc) RT
 	var result = ToAny(initialArgument)
 	for _, function := range functions {
 		result = function(result)
-    }
-    return EnsureType[RT](result)
+	}
+	return EnsureType[RT](result)
 }

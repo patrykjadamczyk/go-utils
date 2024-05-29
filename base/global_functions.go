@@ -61,7 +61,7 @@ func ToPtr[T any](value T) *T {
 
 // Return a value from pointer
 func ToValue[T any](value *T) T {
-    return *value
+	return *value
 }
 
 // IsNil checks if a value is nil or if it's a reference type with a nil underlying value.

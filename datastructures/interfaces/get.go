@@ -17,5 +17,5 @@ type IGetValue[T any] interface {
 }
 
 type IGetValueAny interface {
-    GetValue() any
+	GetValue() any
 }

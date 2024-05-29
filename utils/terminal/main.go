@@ -3,8 +3,8 @@ package terminal
 import (
 	"os"
 
-	"golang.org/x/term"
 	"github.com/patrykjadamczyk/go-utils/math"
+	"golang.org/x/term"
 )
 
 // Get Terminal Size

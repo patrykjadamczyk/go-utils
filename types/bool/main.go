@@ -2,12 +2,12 @@ package bool
 
 // Returns true if both a and b are true
 func And(a, b bool) bool {
-    return a && b
+	return a && b
 }
 
 // Returns true if either a or b is true
 func Or(a, b bool) bool {
-    return a || b
+	return a || b
 }
 
 // Returns true if a and b are different
@@ -22,17 +22,17 @@ func Xnor(a, b bool) bool {
 
 // Returns the opposite of a
 func Not(a bool) bool {
-    return !a
+	return !a
 }
 
 // Returns true if either a or b is false
 func Nand(a, b bool) bool {
-    return !a || !b
+	return !a || !b
 }
 
 // Returns true if both a and b are false
 func Nor(a, b bool) bool {
-    return !a && !b
+	return !a && !b
 }
 
 // Returns 1 if a is true, 0 if a is false

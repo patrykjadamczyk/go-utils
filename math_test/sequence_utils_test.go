@@ -11,6 +11,6 @@ func TestSequenceUtils(t *testing.T) {
 		t.Error("int Sum(2, 3) != 5")
 	}
 	if Product(2, 3) != 6 {
-        t.Error("int Product(2, 3) != 6")
-    }
+		t.Error("int Product(2, 3) != 6")
+	}
 }

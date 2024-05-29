@@ -14,10 +14,10 @@ func TestMut(t *testing.T) {
 	if tv.Get().test != 1 {
 		t.Error("MutableRefValue doesn't hold value correctly")
 	}
-	tf := func (mv MutableRefValue[testMutStruct]) {
-        mv.Set(testMutStruct{test: 2})
-    }
-    tf(tv)
+	tf := func(mv MutableRefValue[testMutStruct]) {
+		mv.Set(testMutStruct{test: 2})
+	}
+	tf(tv)
 	if tv.Get().test != 2 {
 		t.Error("MutableRefValue doesn't change in function correctly")
 	}

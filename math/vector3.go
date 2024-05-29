@@ -15,30 +15,30 @@ type Vector3[T VectorUnderlyingType] struct {
 
 // Add other vector to current one
 func (vec *Vector3[T]) Add(other Vector3[T]) {
-    vec.X += other.X
-    vec.Y += other.Y
-    vec.Z += other.Z
+	vec.X += other.X
+	vec.Y += other.Y
+	vec.Z += other.Z
 }
 
 // Substract other vector from current one
 func (vec *Vector3[T]) Substract(other Vector3[T]) {
-    vec.X -= other.X
-    vec.Y -= other.Y
-    vec.Z -= other.Z
+	vec.X -= other.X
+	vec.Y -= other.Y
+	vec.Z -= other.Z
 }
 
 // Multiply other vector with current one
 func (vec *Vector3[T]) Multiply(other Vector3[T]) {
-    vec.X *= other.X
-    vec.Y *= other.Y
-    vec.Z *= other.Z
+	vec.X *= other.X
+	vec.Y *= other.Y
+	vec.Z *= other.Z
 }
 
 // Divide current vector by other one
 func (vec *Vector3[T]) Divide(other Vector3[T]) {
-    vec.X /= other.X
-    vec.Y /= other.Y
-    vec.Z /= other.Z
+	vec.X /= other.X
+	vec.Y /= other.Y
+	vec.Z /= other.Z
 }
 
 // AddWithinBounds Add update vector to current one within bounds of bounds vector

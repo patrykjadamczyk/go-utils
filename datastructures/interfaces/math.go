@@ -29,7 +29,7 @@ type ISubstract[T any] interface {
 }
 
 type ISubstractInplace[T any] interface {
-    Substract(T)
+	Substract(T)
 }
 
 type ISubstractAny interface {
@@ -49,11 +49,11 @@ type ISubstractAnyFuncInplace interface {
 }
 
 type IMultiply[T any] interface {
-    Multiply(T) T
+	Multiply(T) T
 }
 
 type IMultiplyInplace[T any] interface {
-    Multiply(T)
+	Multiply(T)
 }
 
 type IMultiplyAny interface {
@@ -73,11 +73,11 @@ type IMultiplyAnyFuncInplace interface {
 }
 
 type IDivide[T any] interface {
-    Divide(T) T
+	Divide(T) T
 }
 
 type IDivideInplace[T any] interface {
-    Divide(T)
+	Divide(T)
 }
 
 type IDivideAny interface {
@@ -97,11 +97,11 @@ type IDivideAnyFuncInplace interface {
 }
 
 type IMod[T any] interface {
-    Mod(T) T
+	Mod(T) T
 }
 
 type IModInplace[T any] interface {
-    Mod(T)
+	Mod(T)
 }
 
 type IModAny interface {

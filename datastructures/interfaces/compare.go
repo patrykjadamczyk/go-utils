@@ -1,73 +1,73 @@
 package interfaces
 
 type IEquals[T any] interface {
-    Equals(T) bool
+	Equals(T) bool
 }
 
 type INotEquals[T any] interface {
-    NotEquals(T) bool
+	NotEquals(T) bool
 }
 
 type IEqualsAny interface {
-    Equals(any) bool
+	Equals(any) bool
 }
 
 type INotEqualsAny interface {
-    NotEquals(any) bool
+	NotEquals(any) bool
 }
 
 type IEqualsAnyFunc interface {
-    EqualsAny(any) bool
+	EqualsAny(any) bool
 }
 
 type INotEqualsAnyFunc interface {
-    NotEqualsAny(any) bool
+	NotEqualsAny(any) bool
 }
 
 type ILessThan[T any] interface {
-    LessThan(T) bool
+	LessThan(T) bool
 }
 
 type ILessThanAny interface {
-    LessThan(any) bool
+	LessThan(any) bool
 }
 
 type ILessThanAnyFunc interface {
-    LessThanAny(any) bool
+	LessThanAny(any) bool
 }
 
 type ILessThanOrEqual[T any] interface {
-    LessThanOrEqual(T) bool
+	LessThanOrEqual(T) bool
 }
 
 type ILessThanOrEqualAny interface {
-    LessThanOrEqual(any) bool
+	LessThanOrEqual(any) bool
 }
 
 type ILessThanOrEqualAnyFunc interface {
-    LessThanOrEqualAny(any) bool
+	LessThanOrEqualAny(any) bool
 }
 
 type IGreaterThan[T any] interface {
-    GreaterThan(T) bool
+	GreaterThan(T) bool
 }
 
 type IGreaterThanAny interface {
-    GreaterThan(any) bool
+	GreaterThan(any) bool
 }
 
 type IGreaterThanAnyFunc interface {
-    GreaterThanAny(any) bool
+	GreaterThanAny(any) bool
 }
 
 type IGreaterThanOrEqual[T any] interface {
-    GreaterThanOrEqual(T) bool
+	GreaterThanOrEqual(T) bool
 }
 
 type IGreaterThanOrEqualAny interface {
-    GreaterThanOrEqual(any) bool
+	GreaterThanOrEqual(any) bool
 }
 
 type IGreaterThanOrEqualAnyFunc interface {
-    GreaterThanOrEqualAny(any) bool
+	GreaterThanOrEqualAny(any) bool
 }

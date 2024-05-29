@@ -1,8 +1,8 @@
-//go:build (netbsd && 386)
+//go:build netbsd && 386
 
 package os
 
 const (
-	OS_GOOS = "netbsd"
+	OS_GOOS   = "netbsd"
 	OS_GOARCH = "386"
 )

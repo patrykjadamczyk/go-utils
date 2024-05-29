@@ -74,9 +74,9 @@ func Abs[T ~int8 | ~int16 | ~int32 | ~int64 | ~uint8 | ~uint16 | ~uint32 | ~uint
 
 func NaN[T ~float32 | ~float64]() T {
 	var v T
-	return v/v
+	return v / v
 }
 
 func IsNaN[T ~float32 | ~float64](n T) bool {
-    return n != n
+	return n != n
 }
