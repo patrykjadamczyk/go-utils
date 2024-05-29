@@ -107,3 +107,46 @@ func Coalesce[V any](values ...V) V {
 
 	return Null[V]().ValueOrZero()
 }
+
+// Map Switch Result Type
+type MapSwitchResult[SV comparable, V any] struct {
+	ValueMap map[SV]func() V
+	DefaultMap func() V
+}
+
+// Make Map Switch Statement
+func MapSwitch[SV comparable, V any]() *MapSwitchResult[SV, V] {
+	return &MapSwitchResult[SV, V]{
+		ValueMap:    make(map[SV]func() V),
+	}
+}
+
+// Make case for Map switch
+// specified function will be called only if switch value will be same as specified value
+func (s *MapSwitchResult[SV, V]) Case(switchValue SV, f func() V) *MapSwitchResult[SV, V] {
+	if s.ValueMap[switchValue] == nil {
+		s.ValueMap[switchValue] = f
+	}
+	return s
+}
+
+// Make default case for Map switch
+// specified function will be called only if switch value will not be found
+func (s *MapSwitchResult[SV, V]) Default(f func() V) *MapSwitchResult[SV, V] {
+	if s.DefaultMap == nil {
+		s.DefaultMap = f
+	}
+	return s
+}
+
+// Get value of Map switch
+// This will return case for specified value if found, default value if it exists and null value if none cases match
+func (s *MapSwitchResult[SV, V]) Get(switchValue SV) V {
+	if s.ValueMap[switchValue] == nil {
+		if s.DefaultMap == nil {
+			return Null[V]().ValueOrZero()
+		}
+		return s.DefaultMap()
+	}
+	return s.ValueMap[switchValue]()
+}

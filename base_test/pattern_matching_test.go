@@ -28,6 +28,25 @@ func TestSwitch(t *testing.T) {
 	}
 }
 
+func TestMapSwitch(t *testing.T) {
+	tfm := MapSwitch[int, int]().
+		Case(1, func() int {
+			return 2
+		}).
+		Default(func() int {
+			return 3
+		})
+	if tfm.Get(1) != 2 {
+		t.Error("1 should be 2")
+	}
+	if tfm.Get(2) != 3 {
+		t.Error("2 should be 3")
+	}
+	if tfm.Get(3) != 3 {
+		t.Error("3 should be 3")
+	}
+}
+
 func TestTernary(t *testing.T) {
 	tf := func(v bool) int {
 		return Ternary[int](v, 2, 3)
