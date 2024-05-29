@@ -1,6 +1,6 @@
 module github.com/patrykjadamczyk/go-utils
 
-go 1.21.0
+go 1.22
 
 require (
 	github.com/gookit/goutil v0.6.12
