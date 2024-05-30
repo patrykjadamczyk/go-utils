@@ -175,7 +175,7 @@ func OneVector4[T VectorUnderlyingType]() Vector4[T] {
 
 // Make Vector4D
 func MakeVector4[T VectorUnderlyingType](x, y, z, w T) Vector4[T] {
-	return Vector4[T]{X: x, Y: y, Z: z}
+	return Vector4[T]{X: x, Y: y, Z: z, W: w}
 }
 
 // Make Same Vector4D where all values of the vector are the same number specified
