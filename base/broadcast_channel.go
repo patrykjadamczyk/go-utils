@@ -6,7 +6,7 @@ type BroadcastChannel[T any] struct {
 }
 
 // Subscribe to Broadcast Channel by getting your own subchannel
-func (bc BroadcastChannel[T]) Subscribe(id string) chan T {
+func (bc *BroadcastChannel[T]) Subscribe(id string) chan T {
 	if bc.subchannels == nil {
 		bc.subchannels = make(map[string]chan T)
 	}
@@ -15,12 +15,12 @@ func (bc BroadcastChannel[T]) Subscribe(id string) chan T {
 }
 
 // Unsubscribe from Broadcast Channel by deleting the subchannel
-func (bc BroadcastChannel[T]) Unsubscribe(id string) {
+func (bc *BroadcastChannel[T]) Unsubscribe(id string) {
 	delete(bc.subchannels, id)
 }
 
 // Broadcast Message to all subchannels
-func (bc BroadcastChannel[T]) Broadcast(message T) {
+func (bc *BroadcastChannel[T]) Broadcast(message T) {
 	for _, subchannel := range bc.subchannels {
 		subchannel <- message
 	}
