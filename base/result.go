@@ -162,3 +162,21 @@ func (r Result[T]) ExpectErr(err any) {
 		panic(err)
 	}
 }
+
+// Get Interface Implementation
+
+// Get value or null
+func (r Result[T]) Get() T {
+	if r.IsError() {
+		return Null[T]().ValueOrZero()
+	}
+	return r.DataValue
+}
+
+// Get value or nil as any
+func (r Result[T]) GetAny() any {
+	if r.IsError() {
+		return nil
+	}
+    return r.DataValue
+}

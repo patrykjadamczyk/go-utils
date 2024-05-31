@@ -211,3 +211,20 @@ func (n Nullable[T]) GetError() error {
 	}
 	return errors.NullableError{}
 }
+
+// Get Interface Implementation
+
+// Get value or zero
+func (n Nullable[T]) Get() T {
+    return n.ValueOrZero()
+}
+
+// Get value or zero
+func (n Nullable[T]) GetValue() T {
+    return n.ValueOrZero()
+}
+
+// Get value or zero as any
+func (n Nullable[T]) GetAny() any {
+    return n.ValueOrZero()
+}
