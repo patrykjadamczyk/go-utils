@@ -21,8 +21,8 @@ func (w *Wrapper[T]) ToArrayAny() (res []any) {
 	if val.Kind() == reflect.Slice || val.Kind() == reflect.Array {
 		res = make([]any, 0)
 		for _, item := range EnsureType[[]T](wv) {
-            res = append(res, item)
-        }
+			res = append(res, item)
+		}
 		return
 	}
 	return []any{wv}

@@ -5,9 +5,9 @@ type IToArray[T any] interface {
 }
 
 type IToArrayAny interface {
-    ToArray() []any
+	ToArray() []any
 }
 
 type IToArrayAnyFunc interface {
-    ToArrayAny() []any
+	ToArrayAny() []any
 }

@@ -9,7 +9,7 @@ type ICopyAny interface {
 }
 
 type ICopyAnyFunc interface {
-    CopyAny() any
+	CopyAny() any
 }
 
 type IClone[T any] interface {
@@ -21,5 +21,5 @@ type ICloneAny interface {
 }
 
 type ICloneAnyFunc interface {
-    CloneAny() any
+	CloneAny() any
 }

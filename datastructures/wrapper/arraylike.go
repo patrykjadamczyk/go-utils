@@ -11,21 +11,21 @@ func (w *Wrapper[T]) Len() int {
 func (w *Wrapper[T]) Contains(v T) bool {
 	wa := w.ToArray()
 	for _, wv := range wa {
-        if UniversalEquals(wv, v).GetValue() {
-            return true
-        }
-    }
-    return false
+		if UniversalEquals(wv, v).GetValue() {
+			return true
+		}
+	}
+	return false
 }
 
 func (w *Wrapper[T]) ContainsAny(v any) bool {
 	wa := w.ToArray()
 	for _, wv := range wa {
-        if UniversalEquals(wv, v).GetValue() {
-            return true
-        }
-    }
-    return false
+		if UniversalEquals(wv, v).GetValue() {
+			return true
+		}
+	}
+	return false
 }
 
 func makeArrayWrapper[T any](v []T) Wrapper[[]any] {
@@ -33,7 +33,7 @@ func makeArrayWrapper[T any](v []T) Wrapper[[]any] {
 	for _, item := range EnsureType[[]T](v) {
 		res = append(res, item)
 	}
-    return Wrapper[[]any]{Value: res}
+	return Wrapper[[]any]{Value: res}
 }
 
 // Result of that function you need to use through EnsureType[Wrapper[[]T]]()

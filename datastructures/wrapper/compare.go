@@ -14,45 +14,45 @@ func (w *Wrapper[T]) EqualsAny(v any) bool {
 }
 
 func (w *Wrapper[T]) NotEquals(v T) bool {
-    return !w.Equals(v)
+	return !w.Equals(v)
 }
 
 func (w *Wrapper[T]) NotEqualsAny(v any) bool {
-    return !w.EqualsAny(v)
+	return !w.EqualsAny(v)
 }
 
 func (w *Wrapper[T]) LessThan(v T) bool {
-    return UniversalCompare(w.Get(), v) == compare.Less
+	return UniversalCompare(w.Get(), v) == compare.Less
 }
 
 func (w *Wrapper[T]) LessThanAny(v any) bool {
-    return UniversalCompare(w.Get(), v) == compare.Less
+	return UniversalCompare(w.Get(), v) == compare.Less
 }
 
 func (w *Wrapper[T]) LessThanOrEqual(v T) bool {
 	c := UniversalCompare(w.Get(), v)
-    return c == compare.Less || c == compare.Equal
+	return c == compare.Less || c == compare.Equal
 }
 
 func (w *Wrapper[T]) LessThanOrEqualAny(v any) bool {
 	c := UniversalCompare(w.Get(), v)
-    return c == compare.Less || c == compare.Equal
+	return c == compare.Less || c == compare.Equal
 }
 
 func (w *Wrapper[T]) GreaterThan(v T) bool {
-    return UniversalCompare(w.Get(), v) == compare.Greater
+	return UniversalCompare(w.Get(), v) == compare.Greater
 }
 
 func (w *Wrapper[T]) GreaterThanAny(v any) bool {
-    return UniversalCompare(w.Get(), v) == compare.Greater
+	return UniversalCompare(w.Get(), v) == compare.Greater
 }
 
 func (w *Wrapper[T]) GreaterThanOrEqual(v T) bool {
 	c := UniversalCompare(w.Get(), v)
-    return c == compare.Greater || c == compare.Equal
+	return c == compare.Greater || c == compare.Equal
 }
 
 func (w *Wrapper[T]) GreaterThanOrEqualAny(v any) bool {
 	c := UniversalCompare(w.Get(), v)
-    return c == compare.Greater || c == compare.Equal
+	return c == compare.Greater || c == compare.Equal
 }
