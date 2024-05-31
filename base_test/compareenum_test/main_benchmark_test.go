@@ -8,42 +8,35 @@ import (
 )
 
 func BenchmarkToCompareEnum(b *testing.B) {
-	b.Run("randomNumber", func(b *testing.B) {
-		for i := 0; i < b.N; i++ {
-			_, _ = math.GetRandomNumber[int](), math.GetRandomNumber[int]()
-		}
-	})
 	b.Run("stdlib", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
+			b.StopTimer()
 			i1, i2 := math.GetRandomNumber[int](), math.GetRandomNumber[int]()
+			b.StartTimer()
 			if i1 > i2 {
-				b.Log("Greater")
 				return
 			}
 			if i1 < i2 {
-				b.Log("Less")
 				return
 			}
 			if i1 == i2 {
-				b.Log("Equal")
 				return
 			}
 		}
 	})
 	b.Run("ToCompareEnum", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
+			b.StopTimer()
 			i1, i2 := math.GetRandomNumber[int](), math.GetRandomNumber[int]()
+			b.StartTimer()
 			comp := compare.ToCompareEnum(i1, i2)
 			if comp == compare.Greater {
-				b.Log("Greater")
 				return
 			}
 			if comp == compare.Less {
-				b.Log("Less")
 				return
 			}
 			if comp == compare.Equal {
-				b.Log("Equal")
 				return
 			}
 		}
