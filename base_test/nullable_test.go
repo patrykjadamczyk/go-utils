@@ -220,3 +220,11 @@ func TestNullableAsUnwrappableInterfaceExpectErrCase2(t *testing.T) {
 	var n = NullableValue(1)
 	n.ExpectErr(errors.New("test2"))
 }
+
+func TestNullableNilInterfaceValueProblem(t *testing.T) {
+	var data *byte
+	var in any = data
+	if !NullableValue(in).IsZero() {
+		t.Error("Nullable doesn't handle nil interface value problem")
+	}
+}

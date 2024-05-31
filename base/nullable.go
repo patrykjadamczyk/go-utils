@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/patrykjadamczyk/go-utils/errors"
+	"github.com/patrykjadamczyk/go-utils/utils"
 )
 
 // Nullable represents data that also can be NULL
@@ -55,12 +56,22 @@ func (n Nullable[T]) ValueOrZero() T {
 	return n.Data
 }
 
+// Check for case of nil value interface
+func (n Nullable[T]) isNilString() (result bool) {
+	defer func() {
+		if r := recover(); r == nil {
+			result = true
+		}
+	}()
+	return fmt.Sprintf("%v", n.Data) == utils.FmtSprintfVNil
+}
+
 func (n Nullable[T]) IsZero() bool {
 	if !n.Valid {
 		return true
 	}
 	var ref T
-	return any(ref) == any(n.Data)
+	return any(ref) == any(n.Data) || n.isNilString()
 }
 
 // Equal Check if this Nullable is equal to another Nullable
