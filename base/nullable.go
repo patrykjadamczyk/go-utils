@@ -21,6 +21,9 @@ func NullableValue[T any](value T) Nullable[T] {
 	if any(value) == nil {
 		return Nullable[T]{Valid: false}
 	}
+	if isNilString(value) {
+		return Nullable[T]{Valid: false}
+	}
 	switch any(value).(type) {
 	case errors.NilError:
 		return Nullable[T]{Valid: false}
@@ -32,6 +35,9 @@ func NullableValue[T any](value T) Nullable[T] {
 // ValueFromPointer Create a Nullable from a pointer
 func NullableValueFromPointer[T any](value *T) Nullable[T] {
 	if value == nil {
+		return Nullable[T]{Valid: false}
+	}
+	if isNilString(*value) {
 		return Nullable[T]{Valid: false}
 	}
 	return NullableValue(*value)
@@ -57,13 +63,13 @@ func (n Nullable[T]) ValueOrZero() T {
 }
 
 // Check for case of nil value interface
-func (n Nullable[T]) isNilString() (result bool) {
+func isNilString[T any](n T) (result bool) {
 	defer func() {
-		if r := recover(); r == nil {
+		if r := recover(); r != nil {
 			result = true
 		}
 	}()
-	return fmt.Sprintf("%v", n.Data) == utils.FmtSprintfVNil
+	return fmt.Sprintf("%v", n) == utils.FmtSprintfVNil
 }
 
 func (n Nullable[T]) IsZero() bool {
@@ -71,7 +77,7 @@ func (n Nullable[T]) IsZero() bool {
 		return true
 	}
 	var ref T
-	return any(ref) == any(n.Data) || n.isNilString()
+	return any(ref) == any(n.Data)
 }
 
 // Equal Check if this Nullable is equal to another Nullable
