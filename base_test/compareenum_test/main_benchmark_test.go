@@ -41,6 +41,45 @@ func BenchmarkToCompareEnum(b *testing.B) {
 			}
 		}
 	})
+	b.Run("stdlib-complex128", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			b.StopTimer()
+			c1, c2 := math.GetRandomNumber[complex128](), math.GetRandomNumber[complex128]()
+			b.StartTimer()
+			if real(c1) > real(c2) && imag(c1) > imag(c2) {
+				return
+			}
+			if real(c1) == real(c2) && imag(c1) == imag(c2) {
+				return
+			}
+			if real(c1) < real(c2) && imag(c1) < imag(c2) {
+				return
+			}
+			if real(c1) < real(c2) && imag(c1) >= imag(c2) {
+				return
+			}
+		}
+	})
+	b.Run("ToCompareEnum-complex128", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			b.StopTimer()
+			c1, c2 := math.GetRandomNumber[complex128](), math.GetRandomNumber[complex128]()
+			b.StartTimer()
+			comp := compare.ComplexToCompareEnum(c1, c2)
+			if comp == compare.Greater {
+				return
+			}
+			if comp == compare.Equal {
+				return
+			}
+			if comp == compare.Less {
+				return
+			}
+			if comp == compare.Uncomparable {
+				return
+			}
+		}
+	})
 }
 
 // func TestToCompareEnum2(t *testing.T) {
