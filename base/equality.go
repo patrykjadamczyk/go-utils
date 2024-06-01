@@ -141,6 +141,19 @@ func CastToFloat64(v any) Result[float64] {
 	}
 }
 
+// CastToComplex128 is a function that tries to cast value to complex128
+// Casts any complex
+func CastToComplex128(v any) Result[complex128] {
+	switch vt := v.(type) {
+	case complex64:
+		return Ok(complex128(vt))
+	case complex128:
+		return Ok(complex128(vt))
+	default:
+		return Err[complex128](NewError("Cannot cast to complex128"))
+	}
+}
+
 // UniversalEquals is a function that determins if two values are equal
 // It checks through == operator, different interfaces and other things
 // Returns Result type with:
