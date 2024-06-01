@@ -38,6 +38,21 @@ func (t2 TestAssertionsT2Object) GuardInit() {
 }
 
 func TestAssertions(t *testing.T) {
+	// Test AssertAsErr
+	if AssertAsErr(true) != nil {
+		t.Error("AssertAsErr(true) should not fail")
+	}
+	if AssertAsErr(false) == nil {
+		t.Error("AssertAsErr(false) should not fail")
+	}
+	ae := NewError("test")
+	if AssertCustomErrorAsErr(true, ae) != nil {
+		t.Error("AssertAsErr(true) should not fail")
+	}
+	if (AssertCustomErrorAsErr(false, ae) == nil ||
+		AssertCustomErrorAsErr(false, ae).Error() != ae.Error()) {
+		t.Error("AssertAsErr(false) should not fail")
+	}
 	// Test Assert
 	tests.TestIfNotPanics(t, func() {
 		Assert(true)
