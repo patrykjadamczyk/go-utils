@@ -201,28 +201,28 @@ func UniversalEquals(v1 any, v2 any) Result[bool] {
 	// comparable types
 	switch v1t := v1.(type) {
 	case int, int8, int16, int32, int64:
+		v1r := CastToInt64(v1)
 		v2r := CastToInt64(v2)
 		if !v2r.IsError() {
-			return Ok(v1t == v2r.Unwrap())
+			return Ok(v1r.Unwrap() == v2r.Unwrap())
 		}
 	case uint, uint8, uint16, uint32, uint64, uintptr:
+		v1r := CastToUint64(v1)
 		v2r := CastToUint64(v2)
 		if !v2r.IsError() {
-			return Ok(v1t == v2r.Unwrap())
+			return Ok(v1r.Unwrap() == v2r.Unwrap())
 		}
 	case float32, float64:
+		v1r := CastToFloat64(v1)
 		v2r := CastToFloat64(v2)
 		if !v2r.IsError() {
-			return Ok(v1t == v2r.Unwrap())
+			return Ok(v1r.Unwrap() == v2r.Unwrap())
 		}
 	case complex64, complex128:
-		if vv, ok := CastAll[complex64](v1, v2); ok {
-			Assert(len(vv) != 2)
-			return Ok(vv[0] == vv[1])
-		}
-		if vv, ok := CastAll[complex128](v1, v2); ok {
-			Assert(len(vv) != 2)
-			return Ok(vv[0] == vv[1])
+		v1r := CastToComplex128(v1)
+		v2r := CastToComplex128(v2)
+		if !v2r.IsError() {
+			return Ok(real(v1r.Unwrap()) == real(v2r.Unwrap()) && imag(v1r.Unwrap()) == imag(v2r.Unwrap()))
 		}
 	case bool:
 		if v2i, ok := v2.(bool); ok {
