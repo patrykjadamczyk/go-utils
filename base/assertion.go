@@ -13,11 +13,27 @@ func Assert(cond bool) {
 	}
 }
 
+// Assert that condition is true if it's not then return AssertionError
+func AssertAsErr(cond bool) (err error) {
+	if !cond {
+		err = ExpandError(errors.AssertionError{})
+	}
+	return
+}
+
 // Assert that condition is true if it's not panic with specified custom error
 func AssertCustomError(cond bool, err error) {
 	if !cond {
 		panic(ExpandError(err))
 	}
+}
+
+// Assert that condition is true if it's not then return AssertionError
+func AssertCustomErrorAsErr(cond bool, err error) (rerr error) {
+	if !cond {
+		rerr = ExpandError(err)
+	}
+	return
 }
 
 // assertThat is a container for basic assertion methods
