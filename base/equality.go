@@ -106,7 +106,7 @@ func CastToInt64(v any) Result[int64] {
 	}
 }
 
-// CastToFloat64 is a function that tries to cast value to int64
+// CastToFloat64 is a function that tries to cast value to float64
 // Casts any uint and any int, uintptr and any float
 func CastToFloat64(v any) Result[float64] {
 	switch vt := v.(type) {
