@@ -28,10 +28,25 @@ func AssertCustomError(cond bool, err error) {
 	}
 }
 
+// Assert that condition is true if it's not panic with specified custom error
+func AssertCustomErrorString(cond bool, err string) {
+	if !cond {
+		panic(ExpandError(NewError(err)))
+	}
+}
+
 // Assert that condition is true if it's not then return AssertionError
 func AssertCustomErrorAsErr(cond bool, err error) (rerr error) {
 	if !cond {
 		rerr = ExpandError(err)
+	}
+	return
+}
+
+// Assert that condition is true if it's not then return AssertionError
+func AssertCustomErrorStringAsErr(cond bool, err string) (rerr error) {
+	if !cond {
+		rerr = ExpandError(NewError(err))
 	}
 	return
 }
