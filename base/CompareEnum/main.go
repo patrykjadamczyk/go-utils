@@ -1,4 +1,4 @@
-package compareenum
+package CompareEnum
 
 type CompareEnum uint8
 
