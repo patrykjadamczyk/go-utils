@@ -2,6 +2,8 @@
 ---
 version: '3'
 
+output: prefixed
+
 tasks:
     test:
         desc: "Run tests and watch files for changes"
@@ -50,3 +52,48 @@ tasks:
             - fmt
             - fix
             - vet
+    profile:
+        desc: "Profile specific test (run task profile -- ./testfile_test.go)"
+        cmds:
+            - cmd: mkdir ./.profile
+              ignore_error: true
+            - go test -cpuprofile ./.profile/cpu.pprof -memprofile ./.profile/mem.pprof -blockprofile ./.profile/block.pprof -coverprofile ./.profile/cover.pprof -mutexprofile ./.profile/mutex.pprof {{.CLI_ARGS}}
+    pprof-cpu:
+        desc: "Run pprof on profiled CPU data"
+        prefix: "CPU"
+        internal: true
+        cmds:
+            - go tool pprof -http=":" -no_browser ./.profile/cpu.pprof
+    pprof-mem:
+        desc: "Run pprof on profiled Memory data"
+        prefix: "MEM"
+        internal: true
+        cmds:
+            - go tool pprof -http=":" -no_browser ./.profile/mem.pprof
+    pprof-block:
+        desc: "Run pprof on profiled Go Routines block data"
+        prefix: "BLOCK"
+        internal: true
+        cmds:
+            - go tool pprof -http=":" -no_browser ./.profile/block.pprof
+    pprof-cover:
+        desc: "Run pprof on profiled Coverage data"
+        prefix: "COVER"
+        internal: true
+        cmds:
+            - cmd: go tool pprof -http=":" -no_browser ./.profile/cover.pprof
+              ignore_error: true
+    pprof-mutex:
+        desc: "Run pprof on profiled Mutex data"
+        prefix: "MUTEX"
+        internal: true
+        cmds:
+            - go tool pprof -http=":" -no_browser ./.profile/mutex.pprof
+    pprof:
+        desc: "Run pprof on profiled data"
+        deps:
+            - pprof-cpu
+            - pprof-mem
+            - pprof-block
+            - pprof-cover
+            - pprof-mutex
